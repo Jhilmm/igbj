@@ -1,0 +1,20 @@
+-  igbj
+  - app
+    - config
+      - config.php
+      - routes.php
+    - controllers
+      - HomeController.php
+      - LoginController.php
+    - views
+      - auth
+        - login.php
+      - components
+        - footer.php
+        - header.php
+  - public
+    - scripts
+      - menu.js
+      
+  - .htaccess
+  - index.php
