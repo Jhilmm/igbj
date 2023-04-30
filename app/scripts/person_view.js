@@ -23,29 +23,33 @@ function updateTable(data) {
   table.empty();
   $.each(data, function (index, value) {
     var tr = $("<tr>");
-    tr.append($("<td>").text(value.last_name1));
-    tr.append($("<td>").text(value.last_name2));
-    tr.append($("<td>").text(value.first_name));
-    tr.append($("<td>").text(value.id_number));
-    tr.append($("<td>").text(value.birthdate));
-    tr.append($("<td>").text(value.profession));
-    tr.append($("<td>").text(value.address));
-    tr.append($("<td>").text(value.phone));
-    tr.append($("<td>").text(value.mobile));
-    tr.append($("<td>").text(value.email));
-    tr.append($("<td>").text(value.gender));
+    tr.append($("<td>").text(value["APPATERNO"]));
+    tr.append($("<td>").text(value["APMATERNO"]));
+    tr.append($("<td>").text(value["NOMBRES"]));
+    tr.append($("<td>").text(value["CI"] + " " + value["EXPEDIDOCI"]));
+    tr.append($("<td>").text(value["FECHANACIMIENTO"]));
+    tr.append($("<td>").text(value["PROFESION"]));
+    tr.append($("<td>").text(value["DIRECCION"]));
+    tr.append($("<td>").text(value["TELEFONO"]));
+    tr.append($("<td>").text(value["CELULAR"]));
+    tr.append($("<td>").text(value["CORREO"]));
+    tr.append($("<td>").text(value["SEXO"]));
     tr.append(
-      $("<td>").html("<a href='person_edit.php?id=" + value.id + "'>Editar</a>")
+      $("<td>").html(
+        "<a href='person_edit.php?id=" + value["CI"] + "'>Editar</a>"
+      )
     );
     tr.append(
       $("<td>").html(
-        "<a href='person_assign_item.php?id=" + value.id + "'>Asignar Item</a>"
+        "<a href='person_assign_item.php?id=" +
+          value["CI"] +
+          "'>Asignar Item</a>"
       )
     );
     tr.append(
       $("<td>").html(
         "<a href='person_assign_position.php?id=" +
-          value.id +
+          value["id"] +
           "'>Asignar Posición</a>"
       )
     );

@@ -26,7 +26,7 @@ $routes = [
     ],
     'person_search' => [
         'controller' => 'PersonnelController',
-        'action' => 'searchPerson',
+        'action' => 'searchPersonnel',
         'methods' => ['POST']
     ],
     'registrar_persona' => [
