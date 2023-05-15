@@ -2,6 +2,8 @@
 require_once DOCUMENT_ROOT . 'app/controllers/HomeController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/LoginController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/PersonnelController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/CargoController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/RepuestoController.php';
 
 $routes = [
     '' => [
@@ -32,6 +34,26 @@ $routes = [
     'registrar_persona' => [
         'controller' => 'PersonnelController',
         'action' => 'registerPerson',
+        'methods' => ['GET']
+    ],
+    'registrar_algo' => [
+        'controller' => 'PersonnelController',
+        'action' => 'registerPerson',
+        'methods' => ['GET']
+    ],
+    'cargo' => [
+        'controller' => 'CargoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'repuesto' => [
+        'controller' => 'RepuestoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_repuesto' => [
+        'controller' => 'RepuestoController',
+        'action' => 'register_rep',
         'methods' => ['GET']
     ]
 ];
