@@ -4,6 +4,10 @@ require_once DOCUMENT_ROOT . 'app/controllers/LoginController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/PersonnelController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/CargoController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/RepuestoController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/ActivoController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/CatalogoController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/TareaController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/SubtareaController.php';
 
 $routes = [
     '' => [
@@ -46,6 +50,12 @@ $routes = [
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'registrar_cargo' => [
+        'controller' => 'CargoController',
+        'action' => 'registerCargo',
+        'methods' => ['GET','POST']
+    ],
+
     'repuesto' => [
         'controller' => 'RepuestoController',
         'action' => 'index',
@@ -54,6 +64,42 @@ $routes = [
     'registrar_repuesto' => [
         'controller' => 'RepuestoController',
         'action' => 'register_rep',
+        'methods' => ['GET','POST']
+    ],
+    'actualizar_repuesto' => [
+        'controller' => 'RepuestoController',
+        'action' => 'update',
+        'methods' => ['GET','POST']
+    ],
+    'activo' => [
+        'controller' => 'ActivoController',
+        'action' => 'index',
         'methods' => ['GET']
-    ]
+    ],
+    'registrar_activo' => [
+        'controller' => 'ActivoController',
+        'action' => 'register_act',
+        'methods' => ['GET','POST']
+    ],
+    'catalogo' => [
+        'controller' => 'CatalogoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_catalogo' => [
+        'controller' => 'CatalogoController',
+        'action' => 'register_cat',
+        'methods' => ['GET','POST']
+    ],
+    'tarea' => [
+        'controller' => 'TareaController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'subtarea' => [
+        'controller' => 'SubtareaController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+
 ];

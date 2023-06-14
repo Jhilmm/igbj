@@ -3,31 +3,37 @@
 
 <div class="container my-4">
     <h1 class="h1 text-center mx-auto" id="registered-users">
-        CARGOS REGISTRADOS EN EL SISTEMA
+        REPUESTOS REGISTRADOS EN EL SISTEMA
     </h1>
     <div class="d-flex justify-content-between">
         <input class="form-control-sm" type="search" name="last_name1" id="search-bar" placeholder="Marco...">
-        <a class="btn-sm btn-dark" href='/igbj/registrar_cargo' id="create-btn">Crear</a>
+        <a class="btn-sm btn-dark" href='/igbj/registrar_activo' id="create-btn">Crear</a>
     </div>
 
     <table class="table table-striped table-responsive">
         <thead class="table-success">
             <tr>
-                <th id="last-name">Codigo Cargo</th>
-                <th id="middle-name">Departamento</th>
-                <th id="first-name">Cargo</th>
-                <th id="id-number">Estado</th>
-                <th id="birthdate">Acciones</th>
+                <th id="last-name">Clase</th>
+                <th id="last-name">Marca</th>
+                <th id="middle-name">Modelo</th>
+                <th id="first-name">Procedecia</th>
+                <th id="id-number">Fotografia</th>
+                <th id="birthdate">Año de fabricacion</th>
+                <th id="birthdate">Estado</th>
+                <th id="update-assign-item">Acciones</th>
             </tr>
         </thead>
         <tbody id="person-table-body">
-        <?php foreach ($cargos as $cargo): ?>
+        <?php foreach ($activos as $activo): ?>
             <tr>
-                    <td><?= $cargo['CODCARGO']; ?></td>
-                    <td><?= $cargo['CODDEPARTAMENTO']; ?></td>
-                    <td><?= $cargo['CARGO']; ?></td>
+                    <td><?= $activo['CLASE']; ?></td>
+                    <td><?= $activo['MARCA']; ?></td>
+                    <td><?= $activo['MODELO']; ?></td>
+                    <td><?= $activo['PROCEDENCIA']; ?></td>
+                    <td><center><img height="108px" width="192px" src="data:image/png;base64,<?= base64_encode($activo["FOTOGRAFIA"]);?>"></center></td>
+                    <td><?= $activo['ANIOFABRICACION']; ?></td>
                     <td>
-                        <?php if ($cargo['ESTADO'] == 1): ?>
+                        <?php if ($activo['ESTADOACTIVO'] == 1): ?>
                             <span>HABILITADO</span>
                         <?php else: ?>
                             <span>DESHABILITADO</span>
@@ -37,7 +43,7 @@
                         <div class="icons modificar d-flex justify-content-center">
                             <a href="#" class="fas fa-pen align-self-center"></a>
                         </div>                                              
-                        <?php if ($cargo['ESTADO'] == 1): ?>
+                        <?php if ($activo['ESTADOACTIVO'] == 1): ?>
                             <div class="icons deshabilitar d-flex justify-content-center">
                                 <a href="#" class="fas fa-lock-open align-self-center"></a>
                             </div>

@@ -27,6 +27,10 @@
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/form_validation.js"></script>
 <?php } ?>
 
+<?php if (strpos(REQUEST_URI, '/registrar_activo') !== false) { ?>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/peticion.js"></script>
+<?php } ?>
+
 </body>
 
 </html>

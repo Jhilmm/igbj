@@ -2,13 +2,117 @@
 class RepuestoController
 {
     public function index()
-    {
-        include('app/views/repuestos/repuesto_view.php');
+    {        
+        $repuestos= $this->view();
+        include('app/views/repuestos/repuesto_view.php');                         
     }
+
+    public function view() 
+    {
+        $conn = get_connection();
+        $query = "SELECT * FROM DB_VIEW_Repuestos_view";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
     public function register_rep()
     {
-        include('app/views/repuestos/repuesto_register.php');
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $name_rep = $_POST['name_rep'];
+            $det_rep = $_POST['det_rep'];
+            $fec_ing = $_POST['fec_ing'];
+            $marca = $_POST['marca'];
+            $modelo = $_POST['modelo'];
+            $cant = $_POST['cant'];
+            $cod_tipo_rep = $_POST['name_tipo_rep'];
+
+            $departamentos = $this->register($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,1,$cod_tipo_rep);
+            header("Location: /igbj/repuesto");
+            exit();
+        }else{
+            $tipoRep= $this->tipoRep();
+            include('app/views/repuestos/repuesto_register.php');
+        }
     }
+
+    public function register($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$est_rep, $cod_tipo_rep)
+    {
+        $conn = get_connection();
+        $stmt = $conn->prepare("CALL DB_SP_Repuestos_add(?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssiii",$name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$est_rep,$cod_tipo_rep);
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
+    }
+
+    public function update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $cod_rep = $_POST['cod_rep'];
+            $name_rep = $_POST['name_rep'];
+            $det_rep = $_POST['det_rep'];
+            $fec_ing = $_POST['fec_ing'];
+            $marca = $_POST['marca'];
+            $modelo = $_POST['modelo'];
+            $cant = $_POST['cant'];
+            $cod_tipo_rep = $_POST['name_tipo_rep'];
+            $departamentos = $this->repuesto_update($cod_rep,$name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$cod_tipo_rep);
+            header("Location: /igbj/repuesto");
+            exit();
+        }else{
+            $cod_rep = $_GET['repuesto'];            
+            $repuestos = $this->viewUpdate($cod_rep);
+            $tipoRep= $this->tipoRep();
+            include('app/views/repuestos/repuesto_update.php');
+        }
+    }
+
+    public function viewUpdate($cod_rep)
+    {
+        $conn = get_connection();
+        $query = "SELECT * FROM DB_VIEW_Repuestos_view WHERE CODREPUESTO='" . $cod_rep . "';";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+    public function repuesto_update($cod_rep, $name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$cod_tipo_rep)
+{
+
+    $conn = get_connection();
+    $stmt = $conn->prepare("CALL DB_SP_Repuestos_update(?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("isssssii", $cod_rep, $name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$cod_tipo_rep);
+    if ($stmt->execute()) {
+        $stmt->close();
+        return true;
+    } else {
+        $stmt->close();
+        return false;
+    }
+}
+
+    public function tipoRep() 
+    {
+        $conn = get_connection();
+        $query = "SELECT * FROM DB_VIEW_Tiporepuesto_view";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+
+
     function searchPersonnel($postData)
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -42,4 +146,6 @@ class RepuestoController
             }
         }
     }
+
+    
 }

@@ -21,11 +21,42 @@
                 <th id="birthdate">Modelo</th>
                 <th id="birthdate">Cantidad Ingreso</th>
                 <th id="birthdate">Estado</th>
-                <th id="update-assign-item">Update/Assign Item</th>
-                <th id="update-assign-position">Update/Assign Position</th>
+                <th id="birthdate">Acciones</th>
             </tr>
         </thead>
         <tbody id="person-table-body">
+        <?php foreach ($repuestos as $cargo): ?>
+            <tr>
+                    <td><?= $cargo['NOMREPUESTO']; ?></td>
+                    <td><?= $cargo['DETALLEREPUESTO']; ?></td>
+                    <td><?= $cargo['NOMTIPOREPUESTO']; ?></td>
+                    <td><?= $cargo["FECHA"] ?></td>
+                    <td><?= $cargo["MARCA"]?></td>
+                    <td><?= $cargo["MODELO"]?></td>
+                    <td><?= $cargo["CANTIDAD"]?></td>
+                    <td>
+                        <?php if ($cargo['ESTADO'] == 1): ?>
+                            <span>HABILITADO</span>
+                        <?php else: ?>
+                            <span>DESHABILITADO</span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="acciones">
+                        <div class="icons modificar d-flex justify-content-center">
+                            <a href="/igbj/actualizar_repuesto?repuesto=<?= $cargo['CODREPUESTO']; ?>" class="fas fa-pen align-self-center"></a>
+                        </div>                                              
+                        <?php if ($cargo['ESTADO'] == 1): ?>
+                            <div class="icons deshabilitar d-flex justify-content-center">
+                                <a href="#" class="fas fa-lock-open align-self-center"></a>
+                            </div>
+                        <?php else: ?>
+                            <div class="icons habilitar d-flex justify-content-center">
+                                <a href = "#" class="fas fa-lock align-self-center"></a>
+                            </div>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
         </tbody>
     </table>
 </div>
