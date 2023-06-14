@@ -1,13 +1,16 @@
 <footer>
-     <p class="p">Calle Venezuela Esq. Ismael Vasquez</p>
-     <p class="p">Telefono: 4259198</p>
-     <p class="p">Fax: 4250699</p>
-     <p><a href="#">igbjcochabamba@gmail.com</a></p>
-
-     <div class="redes_sociales">
-          <a href="#" target="_blank" class="fab fa-facebook-f"></a>
-          <a href="#" target="_blank" class="fab fa-twitter"></a>
-          <a href="#" target="_blank" class="fab fa-youtube"></a>
+     <div class="container_footer">
+          <div class="container_information">
+               <p class="p">Calle Venezuela Esq. Ismael Vasquez</p>
+               <p class="p">Telefono: 4259198</p>
+               <p class="p">Fax: 4250699</p>
+               <p><a href="#">igbjcochabamba@gmail.com</a></p>
+          </div>
+          <div class="redes_sociales">
+               <a href="#" target="_blank" class="fab fa-facebook-f"></a>
+               <a href="#" target="_blank" class="fab fa-twitter"></a>
+               <a href="#" target="_blank" class="fab fa-youtube"></a>
+          </div>
      </div>
 </footer>
 

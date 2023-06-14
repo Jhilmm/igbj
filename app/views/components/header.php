@@ -13,7 +13,7 @@
     <!-- Enlaces de hojas de estilo -->
     <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/styles.css">
     <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/header.css">
-    <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/foote.css">
+    <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/footer.css">
 
     <title>Registro de Equipos </title>
 </head>
@@ -57,7 +57,7 @@
                 <a class="dropdown-item" href="/igbj_mantenimientos/includes/mantenimientos/view_maintenance_centers.php">Centros de Mantenimiento</a>
             </li>
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/departamentos/depa_view.php">Departamentos</a>
+                <a class="dropdown-item" href="/igbj/departamento">Departamentos</a>
             </li>
             <li>
                 <a class="dropdown-item" href= "/igbj/personal">Personas</a>
@@ -65,13 +65,13 @@
 
 
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/proveedor/proveedor_view.php">Proveedores</a>
+                <a class="dropdown-item" href="/igbj/proveedor">Proveedores</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj_mantenimientos/includes/repuestos/repuesto_view.php">Repuestos</a>
             </li>
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/orden_trabajo/orden_view.php">Ordenes de trabajo</a>
+                <a class="dropdown-item" href="/igbj/orden_trabajo">Ordenes de trabajo</a>
             </li>
         </ul>
     </nav>

@@ -3,6 +3,7 @@ body{
     margin: 0;
 }
 
+
 header{
     display: flex;
     height: 15vh;
@@ -11,12 +12,26 @@ header{
     align-items: center;
     padding: 10px;
 }
-
+.register{
+    height: 62vh;
+}
 .nombre{
     color: white;
     font-size: 5vh ;
 }
-
+.container-section{
+    min-height: 62vh;
+}
+.fila{
+    display: flex;
+    justify-content: space-evenly;
+}
+.container-input{
+    width: 35vw;
+}
+.work{
+    width: 50%;
+}
 /*ORDEN VIEW*/
 .h1{
     margin-top: 3vh;
@@ -30,15 +45,10 @@ th{
     font-size: 2vh;
     font-weight: 700;
     line-height: 1;
-    vertical-align: center !important;
-    text-align: center !important;
 }
 td{
     font-size: 2vh;
     line-height: 1;
-    vertical-align: middle !important; 
-    height: 5vh !important ; 
-    text-align: center !important;
 }
 .contenedor_boton{
     width: 100%;
@@ -62,13 +72,13 @@ td{
     text-align: center;
     align-items: center;
     justify-content: center;
+    border-radius: 15%;
 }
-.fa-solid{
-    font-size: 2vh;
-    margin-top: 1vh;
+.fas{
+    font-size: 2.5vh;
     color: white;
 }
-.fa-solid:hover{
+.fas:hover{
     color: white;
 }
 .print{
