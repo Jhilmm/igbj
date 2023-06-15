@@ -25,35 +25,83 @@ require_once DOCUMENT_ROOT . 'app/controllers/TareaController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/SubtareaController.php';
 
 $routes_darwin = [
-    '' => [
-        'controller' => 'HomeController',
+    'departamento' => [
+        'controller' => 'DepartamentController',
         'action' => 'index',
+        'methods' => ['GET','POST']
+    ],
+    'registrar_departamento' => [
+        'controller' => 'DepartamentController',
+        'action' => 'registerDepartament',
+        'methods' => ['GET','POST']
+    ],
+    'actualizar_departamento' => [
+        'controller' => 'DepartamentController',
+        'action' => 'updateDepartament',
+        'methods' => ['GET','POST']
+    ],
+    'habilitar_departamento' => [
+        'controller' => 'DepartamentController',
+        'action' => 'enableDepartament',
         'methods' => ['GET']
     ],
-    'login' => [
-        'controller' => 'LoginController',
-        'action' => 'showLoginForm',
+    'deshabilitar_departamento' => [
+        'controller' => 'DepartamentController',
+        'action' => 'disableDepartament',
         'methods' => ['GET']
     ],
-    'datos' => [
-        'controller' => 'LoginController',
-        'action' => 'datos',
-        'methods' => ['POST']
-    ],
-    'personal' => [
-        'controller' => 'PersonnelController',
+
+    'proveedor' => [
+        'controller' => 'ProviderController',
         'action' => 'index',
+        'methods' => ['GET','POST']
+    ],    
+    'registrar_proveedor' => [
+        'controller' => 'ProviderController',
+        'action' => 'registerProvider',
+        'methods' => ['GET','POST']
+    ],
+    'actualizar_proveedor' => [
+        'controller' => 'ProviderController',
+        'action' => 'updateProvider',
+        'methods' => ['GET','POST']
+    ],
+    'habilitar_proveedor' => [
+        'controller' => 'ProviderController',
+        'action' => 'enableProvider',
         'methods' => ['GET']
     ],
-    'person_search' => [
-        'controller' => 'PersonnelController',
-        'action' => 'searchPersonnel',
+    'deshabilitar_proveedor' => [
+        'controller' => 'ProviderController',
+        'action' => 'disableProvider',
+        'methods' => ['GET']
+    ],
+
+    'orden_trabajo' => [
+        'controller' => 'WorkOrderController',
+        'action' => 'index',
+        'methods' => ['GET','POST']
+    ],
+    'registrar_orden_trabajo' => [
+        'controller' => 'WorkOrderController',
+        'action' => 'registerWorkOrder',
+        'methods' => ['GET','POST']
+    ],
+    'reporte_orden_trabajo' => [
+        'controller' => 'WorkOrderController',
+        'action' => 'reportWorkOrder',
+        'methods' => ['GET']
+    ],
+
+    'obtener_personal' => [
+        'controller' => 'WorkOrderItemController',
+        'action' => 'getResponsible',
+        'methods' => ['GET']
+    ],
+    'obtener_activo' => [
+        'controller' => 'WorkOrderItemController',
+        'action' => 'getActivo',
         'methods' => ['POST']
-    ],
-    'registrar_persona' => [
-        'controller' => 'PersonnelController',
-        'action' => 'registerPerson',
-        'methods' => ['GET']
     ]
 ];
 
