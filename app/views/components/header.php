@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/styles.css">
     <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/header.css">
     <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/footer.css">
+    <!-- <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/foote.css">
+    <link rel="stylesheet" href="<?php DOCUMENT_ROOT; ?>public/styles/table.css"> -->
 
     <title>Registro de Equipos </title>
 </head>
@@ -34,8 +36,8 @@
         </div>
 
         <div class="logo">
-            <a href="/igbj_mantenimientos">
-                <img src="/igbj_mantenimientos/img/logo.png" alt="logo dep">
+            <a href="/igbj">
+                <img src="/igbj/img/logo.png" alt="logo dep">
             </a>
         </div>
 
@@ -45,7 +47,7 @@
                 <a class="dropdown-item" href="/igbj_mantenimientos/includes/activos/activo_view.php">Activos</a>
             </li>
             <li class="active">
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/asignacion_activos/view_asset.php">Asignar Activos</a>
+                <a class="dropdown-item" href="/igbj/asignar_activo">Asignar Activos</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj_mantenimientos/includes/catalogos/catalogo_view.php">Catálogos</a>
@@ -54,13 +56,13 @@
                 <a class="dropdown-item" href="/igbj_mantenimientos/includes/cargos/cargo_view.php">Cargos</a>
             </li>
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/mantenimientos/view_maintenance_centers.php">Centros de Mantenimiento</a>
+                <a class="dropdown-item" href="/igbj/centros_mantenimiento">Centros de Mantenimiento</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj/departamento">Departamentos</a>
             </li>
             <li>
-                <a class="dropdown-item" href= "/igbj/personal">Personas</a>
+                <a class="dropdown-item" href="/igbj/personal">Personas</a>
             </li>
 
 

@@ -1,13 +1,22 @@
 <?php
 require_once DOCUMENT_ROOT . 'app/controllers/HomeController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/LoginController.php';
-require_once DOCUMENT_ROOT . 'app/controllers/PersonnelController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/personnel/PersonnelController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/personnel/PersonnelItemController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/personnel/PersonnelPositionController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/maintenance_center/MaintenanceCenterController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/assign_assets/AssignAssetController.php';
+
+require_once 'api_get.php';
+require_once 'api_post.php';
+
 require_once DOCUMENT_ROOT . 'app/controllers/department/DepartamentController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/provider/ProviderController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/work_order/WorkOrderController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/work_order/WorkOrderItemController.php';
 
-$routes = [
+
+$routes_darwin = [
     '' => [
         'controller' => 'HomeController',
         'action' => 'index',
@@ -118,3 +127,5 @@ $routes = [
         'methods' => ['POST']
     ]
 ];
+
+$routes = array_merge($routes_get, $routes_post, $routes_darwin);
