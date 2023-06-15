@@ -24,6 +24,6 @@
 
         <input type="submit" class="btn btn-primary" value="Enviar">
     </form>
-
+<?php ?>
 </div>
 <?php include('app/views/components/footer.php'); ?>
