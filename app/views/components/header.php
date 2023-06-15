@@ -47,7 +47,7 @@
                 <a class="dropdown-item" href="/igbj/activo">Activos</a>
             </li>
             <li class="active">
-                <a class="dropdown-item" href="/igbj/asignar_activo">Asignar Activos</a>
+                <a class="dropdown-item" href="/igbj/activos_asignados">Asignar Activos</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj/catalogo">Catálogos</a>

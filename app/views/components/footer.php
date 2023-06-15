@@ -75,8 +75,11 @@
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/maintenance_center/view_assign_technician.js"></script>
 <?php } ?>
 
-<?php if (strpos(REQUEST_URI, '/asignar_activo') !== false) { ?>
+<?php if (strpos(REQUEST_URI, '/activos_asignados') !== false) { ?>
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/assign_assets/view.js"></script>
+<?php } ?>
+<?php if (strpos(REQUEST_URI, '/asignar_activos') !== false) { ?>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/assign_assets/form_assign.js"></script>
 <?php } ?>
 
 <?php if (strpos(REQUEST_URI, '/registrar_activo') !== false) { ?>

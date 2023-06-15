@@ -65,9 +65,14 @@ $routes_get = [
         'action' => 'viewTechnicianAssignCenter',
         'methods' => ['GET']
     ],
-    'asignar_activo' => [
+    'activos_asignados' => [
         'controller' => 'AssignAssetController',
         'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'asignar_activos' => [
+        'controller' => 'AssignAssetController',
+        'action' => 'assignAssetForm',
         'methods' => ['GET']
     ],
 ];

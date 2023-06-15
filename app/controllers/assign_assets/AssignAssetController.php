@@ -82,4 +82,8 @@ class AssignAssetController
             }
         }
     }
+    public function assignAssetForm()
+    {
+        include('app/views/assign_assets/form_assign.php');
+    }
 }

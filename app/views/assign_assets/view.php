@@ -2,11 +2,11 @@
 
 <div class="container my-4">
     <h1 class="h1 text-center mx-auto" id="registered-users">
-        CENTROS DE MANTENIMIENTOS REGISTRADOS
+        ACTIVOS ASIGNADOS AL PERSONAL
     </h1>
 
     <div class="d-flex justify-content-between">
-        <input class="form-control-sm" type="search" name="search" id="search-bar" placeholder="Impresora...">
+        <input class="form-control-sm" type="search" name="search" id="search-bar" placeholder="Descripcion del activo...">
         <div class="form-group">
             <label for="personnel">Personal Responsable:</label>
             <select name="personnel" id="personnel" class="form-control">

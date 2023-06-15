@@ -18,8 +18,9 @@ $(document).ready(function () {
   let $miSelect = $("#personnel");
   $miSelect.on("change", function () {
     let cod_asign_cargo_per = $(this).find(":selected").attr("value");
+    localStorage.clear();
     if (cod_asign_cargo_per != "") {
-      localStorage.setItem("cod_asign_cargo_per",cod_asign_cargo_per)
+      localStorage.setItem("cod_asign_cargo_per", cod_asign_cargo_per);
       setTimeout(function () {
         $("#search-bar").trigger("click");
       }, 1000);
@@ -39,7 +40,6 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (data) {
-        console.log(data);
         update(data);
       },
     });
@@ -104,6 +104,10 @@ $("#assign").click(function () {
   checkboxes.each(function () {
     valoresSeleccionados.push($(this).val());
   });
-  console.log(valoresSeleccionados);
-  console.log("click");
+  if (valoresSeleccionados.length > 0) {
+    localStorage.setItem("asset", valoresSeleccionados);
+    window.location.href = "/igbj/asignar_activos";
+  } else {
+    alert("no hay activos seleccionados para transferir, por favor seleccione algunos activos para transferir")
+  }
 });
