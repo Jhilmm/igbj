@@ -58,67 +58,62 @@ $routes_darwin = [
 ];
 
 $routes_limbert = [
-'registrar_algo' => [
-    'controller' => 'PersonnelController',
-    'action' => 'registerPerson',
-    'methods' => ['GET']
-],
-'cargo' => [
-    'controller' => 'CargoController',
-    'action' => 'index',
-    'methods' => ['GET']
-],
-'registrar_cargo' => [
-    'controller' => 'CargoController',
-    'action' => 'registerCargo',
-    'methods' => ['GET','POST']
-],
+    'cargo' => [
+        'controller' => 'CargoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_cargo' => [
+        'controller' => 'CargoController',
+        'action' => 'registerCargo',
+        'methods' => ['GET', 'POST']
+    ],
 
-'repuesto' => [
-    'controller' => 'RepuestoController',
-    'action' => 'index',
-    'methods' => ['GET']
-],
-'registrar_repuesto' => [
-    'controller' => 'RepuestoController',
-    'action' => 'register_rep',
-    'methods' => ['GET','POST']
-],
-'actualizar_repuesto' => [
-    'controller' => 'RepuestoController',
-    'action' => 'update',
-    'methods' => ['GET','POST']
-],
-'activo' => [
-    'controller' => 'ActivoController',
-    'action' => 'index',
-    'methods' => ['GET']
-],
-'registrar_activo' => [
-    'controller' => 'ActivoController',
-    'action' => 'register_act',
-    'methods' => ['GET','POST']
-],
-'catalogo' => [
-    'controller' => 'CatalogoController',
-    'action' => 'index',
-    'methods' => ['GET']
-],
-'registrar_catalogo' => [
-    'controller' => 'CatalogoController',
-    'action' => 'register_cat',
-    'methods' => ['GET','POST']
-],
-'tarea' => [
-    'controller' => 'TareaController',
-    'action' => 'index',
-    'methods' => ['GET']
-],
-'subtarea' => [
-    'controller' => 'SubtareaController',
-    'action' => 'index',
-    'methods' => ['GET']
-]
+    'repuesto' => [
+        'controller' => 'RepuestoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_repuesto' => [
+        'controller' => 'RepuestoController',
+        'action' => 'register_rep',
+        'methods' => ['GET', 'POST']
+    ],
+    'actualizar_repuesto' => [
+        'controller' => 'RepuestoController',
+        'action' => 'update',
+        'methods' => ['GET', 'POST']
+    ],
+    'activo' => [
+        'controller' => 'ActivoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_activo' => [
+        'controller' => 'ActivoController',
+        'action' => 'register_act',
+        'methods' => ['GET', 'POST']
+    ],
+    'catalogo' => [
+        'controller' => 'CatalogoController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_catalogo' => [
+        'controller' => 'CatalogoController',
+        'action' => 'register_cat',
+        'methods' => ['GET', 'POST']
+    ],
+    'tarea' => [
+        'controller' => 'TareaController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'subtarea' => [
+        'controller' => 'SubtareaController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ]
 ];
 
-$routes = array_merge($routes_get, $routes_post, $routes_darwin);
+$routes = array_merge($routes_get, $routes_post, $routes_darwin, $routes_limbert);
