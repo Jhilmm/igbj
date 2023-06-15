@@ -44,13 +44,13 @@
         <ul class="list-unstyled menu-elements">
 
             <li class="active">
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/activos/activo_view.php">Activos</a>
+                <a class="dropdown-item" href="/igbj/activo">Activos</a>
             </li>
             <li class="active">
                 <a class="dropdown-item" href="/igbj/asignar_activo">Asignar Activos</a>
             </li>
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/catalogos/catalogo_view.php">Catálogos</a>
+                <a class="dropdown-item" href="/igbj/catalogo">Catálogos</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj_mantenimientos/includes/cargos/cargo_view.php">Cargos</a>

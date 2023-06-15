@@ -1,13 +1,13 @@
 <?php
-class PersonnelController
+class ViewController
 {
     public function index()
     {
-        include('app/views/person/person_view.php');
+        include('app/views/cargos/cargo_view.php');
     }
     public function registerPerson()
     {
-        include('app/views/person/person_register.php');
+        include('app/views/cargos/cargo_register.php');
     }
     function searchPersonnel($postData)
     {
