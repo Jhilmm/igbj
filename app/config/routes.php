@@ -91,15 +91,30 @@ $routes = [
         'action' => 'register_cat',
         'methods' => ['GET','POST']
     ],
+    'modificar_catalogo' => [
+        'controller' => 'CatalogoController',
+        'action' => 'update',
+        'methods' => ['GET','POST']
+    ],
     'tarea' => [
         'controller' => 'TareaController',
         'action' => 'index',
         'methods' => ['GET']
+    ],
+    'registrar_tarea' => [
+        'controller' => 'TareaController',
+        'action' => 'register_tar',
+        'methods' => ['GET','POST']
     ],
     'subtarea' => [
         'controller' => 'SubtareaController',
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'registrar_subtarea' => [
+        'controller' => 'SubtareaController',
+        'action' => 'register_sub',
+        'methods' => ['GET','POST']
+    ]
 
 ];

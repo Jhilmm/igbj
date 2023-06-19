@@ -11,7 +11,7 @@
     </h1>
     <div class="d-flex justify-content-between">
         <input class="form-control-sm" type="search" name="last_name1" id="search-bar" placeholder="Marco...">
-        <a class="btn-sm btn-dark" href='/igbj/registrar_catalogo' id="create-btn">Crear</a>
+        <a class="btn-sm btn-dark" href='/igbj/registrar_tarea?codCat=<?php echo $codCat?>' id="create-btn">Crear</a>
     </div>
 
     <table class="table table-striped table-responsive">
@@ -54,7 +54,7 @@
 
                     <td class="">
                             <a class="btn btn-info" href="subtarea?codTar=<?php echo $tabla["CODTAREA"]; ?>">
-                                VER TAREAS
+                                VER SUBTAREAS
                             </a>
                     </td>
                 </tr>

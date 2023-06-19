@@ -5,6 +5,7 @@ class TareaController
     public function index()
     {        
         $catalogo = $_GET["codCat"];
+        $codCat = $catalogo;
         $tablas = $this->get_tarea($catalogo);
         $catalogo = $this->view($catalogo);
         $catalogo = $catalogo->fetch_array(MYSQLI_BOTH);
@@ -39,16 +40,19 @@ function get_tarea($codcat)
     public function register_tar()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $nameClase = $_POST['name_clase'];
-            $nameCatal = $_POST['name_catalogo'];
+
+            $name_cata = $_POST['name_cata'];
+            $name_tarea = $_POST['name_tarea'];
             
 
-            $catalogos = $this->register($nameClase, strtoupper($nameCatal), true);
-            header("Location: /igbj/tarea");
+            $catalogos = $this->register($name_cata, strtoupper($name_tarea), true);
+            
+            header("Location: /igbj/tarea?codCat=$name_cata");
             exit();
         }else{
-            $clases= $this->get_clase_marca();
-            include('app/views/tareass/tarea_register.php');
+            $codCatalogo = $_GET["codCat"];
+            $catalogos = $this->get_catalogo();
+            include('app/views/tareas/tarea_register.php');
         }
     }
 
@@ -106,17 +110,17 @@ function get_tarea($codcat)
     }
 }
 
-    public function register( $codClase, $nomCat, $estado)
+    public function register( $cod_cata, $name_tarea, $estado)
     {
         $conn = get_connection();
-    $stmt = $conn->prepare("CALL DB_SP_Catalogo_add(?,?,?)");
-    $stmt->bind_param("isi",$codClase, $nomCat, $estado );
-    if ($stmt->execute()) {
-        $stmt->close();
-        return true;
-    } else {
-        $stmt->close();
-        return false;
-    }
+        $stmt = $conn->prepare("CALL DB_SP_Tareas_add(?,?,?)");
+        $stmt->bind_param("sii", $name_tarea, $estado, $cod_cata);
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
     }
 }
