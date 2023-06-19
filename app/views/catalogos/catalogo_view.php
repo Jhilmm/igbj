@@ -53,7 +53,7 @@
                     </td>
                     <td class="acciones">
                         <div class="icons modificar d-flex justify-content-center">
-                            <a href="#" class="fas fa-pen align-self-center"></a>
+                            <a href="modificar_catalogo?codigo=<?php echo $tabla["CODCATALOGO"];?>&clase=<?php echo $codClase;?>" class="fas fa-pen align-self-center"></a>
                         </div>                                              
                         <?php if ($tabla["ESTADO"] == 1): ?>
                             <div class="icons deshabilitar d-flex justify-content-center">

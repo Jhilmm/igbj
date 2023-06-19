@@ -28,17 +28,17 @@ $routes_darwin = [
     'departamento' => [
         'controller' => 'DepartamentController',
         'action' => 'index',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'registrar_departamento' => [
         'controller' => 'DepartamentController',
         'action' => 'registerDepartament',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'actualizar_departamento' => [
         'controller' => 'DepartamentController',
         'action' => 'updateDepartament',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'habilitar_departamento' => [
         'controller' => 'DepartamentController',
@@ -54,17 +54,17 @@ $routes_darwin = [
     'proveedor' => [
         'controller' => 'ProviderController',
         'action' => 'index',
-        'methods' => ['GET','POST']
-    ],    
+        'methods' => ['GET', 'POST']
+    ],
     'registrar_proveedor' => [
         'controller' => 'ProviderController',
         'action' => 'registerProvider',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'actualizar_proveedor' => [
         'controller' => 'ProviderController',
         'action' => 'updateProvider',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'habilitar_proveedor' => [
         'controller' => 'ProviderController',
@@ -80,12 +80,12 @@ $routes_darwin = [
     'orden_trabajo' => [
         'controller' => 'WorkOrderController',
         'action' => 'index',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'registrar_orden_trabajo' => [
         'controller' => 'WorkOrderController',
         'action' => 'registerWorkOrder',
-        'methods' => ['GET','POST']
+        'methods' => ['GET', 'POST']
     ],
     'reporte_orden_trabajo' => [
         'controller' => 'WorkOrderController',
@@ -152,16 +152,31 @@ $routes_limbert = [
         'action' => 'register_cat',
         'methods' => ['GET', 'POST']
     ],
+    'modificar_catalogo' => [
+        'controller' => 'CatalogoController',
+        'action' => 'update',
+        'methods' => ['GET', 'POST']
+    ],
     'tarea' => [
         'controller' => 'TareaController',
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'registrar_tarea' => [
+        'controller' => 'TareaController',
+        'action' => 'register_tar',
+        'methods' => ['GET', 'POST']
+    ],
     'subtarea' => [
         'controller' => 'SubtareaController',
         'action' => 'index',
         'methods' => ['GET']
-    ]
+    ],
+    'registrar_subtarea' => [
+        'controller' => 'SubtareaController',
+        'action' => 'register_sub',
+        'methods' => ['GET', 'POST']
+    ],
 ];
 
 $routes = array_merge($routes_get, $routes_post, $routes_darwin, $routes_limbert);

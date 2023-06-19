@@ -34,30 +34,50 @@ function get_tareas_by_cat($codcat)
     }
 }
 
-function view($codcat)
-{
-    $conn = get_connection();
-    $query = "SELECT * FROM DB_VIEW_Tareas_view WHERE CODTAREA  = '$codcat'";
-    if ($result = $conn->query($query)) {
-        return $result;
-    } else {
-        return null;
+    function get_tarea($codcat)
+    {
+        $conn = get_connection();
+        $query = "SELECT * FROM DB_VIEW_Tareas_view WHERE CODTAREA = '$codcat'";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
     }
-}
+
+    function view($codcat)
+    {
+        $conn = get_connection();
+        $query = "SELECT * FROM DB_VIEW_Tareas_view WHERE CODTAREA  = '$codcat'";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
 
     public function register_sub()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $nameClase = $_POST['name_clase'];
-            $nameCatal = $_POST['name_catalogo'];
-            
+            $name_tarea = $_POST['name_tarea'];
+            $name_subtarea= $_POST['name_subtarea'];
+            $tarea = $_GET["codTar"];
 
-            $catalogos = $this->register($nameClase, strtoupper($nameCatal), true);
-            header("Location: /igbj/catalogo");
+            $catalogos = $this->register($name_tarea, strtoupper($name_subtarea), true);
+
+            header("Location: /igbj/subtarea?codTar=$tarea");
             exit();
         }else{
             $codTar = $_GET["codTar"];
-            $tareas = $this->get_tareas_by_cat($codTar);
+            $tarea = $this->get_tarea($codTar);
+            $tarea = $tarea->fetch_array(MYSQLI_BOTH);
+
+            $nomTar = $tarea["NOMTAREA"];
+
+            $codCat = $tarea["CODCATALOGO"];
+
+            $tareas = $this->get_tareas_by_cat($codCat);
+
             include('app/views/subtareas/subtarea_register.php');
         }
     }
@@ -116,17 +136,17 @@ function view($codcat)
     }
 }
 
-    public function register( $codClase, $nomCat, $estado)
+    public function register( $codTarea, $nameSub, $estado)
     {
         $conn = get_connection();
-    $stmt = $conn->prepare("CALL DB_SP_Catalogo_add(?,?,?)");
-    $stmt->bind_param("isi",$codClase, $nomCat, $estado );
-    if ($stmt->execute()) {
-        $stmt->close();
-        return true;
-    } else {
-        $stmt->close();
-        return false;
-    }
+        $stmt = $conn->prepare("CALL DB_SP_Subtareas_add(?,?,?)");
+        $stmt->bind_param("isi", $codTarea, $nameSub, $estado);
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
     }
 }
