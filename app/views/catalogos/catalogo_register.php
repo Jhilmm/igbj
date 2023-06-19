@@ -1,7 +1,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/igbj/app/views/components/header.php'); ?>
 
 <div class="container">
-    <h1 class="h1 text-center mt-5 mb-4">REGISTRAR NUEVO CARGO</h1>
+    <h1 class="h1 text-center mt-5 mb-4">REGISTRAR NUEVO CATALOGO</h1>
     <form action="registrar_catalogo" method="post">
 
         <div class="form-group">

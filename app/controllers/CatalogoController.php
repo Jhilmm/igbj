@@ -9,6 +9,7 @@ class CatalogoController
         $tabla = "0";
         if(isset($_GET["clase"])){
             $tabla = $_GET["clase"];
+            $codClase = $tabla;
         }
         $tablas = $this->view($tabla);
         include('app/views/catalogos/catalogo_view.php');                         
@@ -41,6 +42,43 @@ class CatalogoController
         }
     }
 
+    public function update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $nameClase = $_POST['name_clase'];
+            $nameCatal = $_POST['name_catalogo'];
+            $codCatalogo = $_POST['cod_catalogo'];
+
+            //$catalogos = $this->register($nameClase, strtoupper($nameCatal), true);
+            $catalogos = $this->catalogo_update( $codCatalogo, $nameClase, strtoupper($nameCatal));
+            header("Location: /igbj/catalogo");
+            exit();
+        }else{
+            $codigo = $_GET["codigo"];
+            $codClase = $_GET["clase"];
+            $clases= $this->get_clase_marca();
+
+            $catalogo = $this->get_catalogo_by_cod($codigo);
+            $catalogo = $catalogo->fetch_array(MYSQLI_BOTH);
+            include('app/views/catalogos/catalogo_update.php');
+        }
+    }
+
+    function catalogo_update( $codCatalogo, $codClase, $nomCat)
+{
+
+    $conn = get_connection();
+    $stmt = $conn->prepare("CALL DB_SP_Catalogo_update(?,?,?)");
+    $stmt->bind_param("iis", $codCatalogo, $codClase, $nomCat);
+    if ($stmt->execute()) {
+        $stmt->close();
+        return true;
+    } else {
+        $stmt->close();
+        return false;
+    }
+}
+
     function get_proveedor()
     {
         $conn = get_connection();
@@ -72,6 +110,17 @@ class CatalogoController
             return null;
         }
     }
+
+    function get_catalogo_by_cod($catalog)
+{
+    $conn = get_connection();
+    $query = "SELECT NOMCATALOGO FROM DB_VIEW_CatalogoAll_view WHERE CODCATALOGO='$catalog'";
+    if ($result = $conn->query($query)) {
+        return $result;
+    } else {
+        return null;
+    }
+}
 
     function get_clase_marca_by_codmarca($cod_marca)
     {
