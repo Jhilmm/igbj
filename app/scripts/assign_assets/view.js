@@ -6,7 +6,7 @@ $(document).ready(function () {
   $searchBarResponsible.on("input click", function () {
     let searchValue = $(this).val();
     $.ajax({
-      url: "/igbj/search_responsible_personnel_with_asset_assignment",
+      url: baseURL + "/search_responsible_personnel_with_asset_assignment",
       method: "POST",
       data: { search_term: searchValue },
       dataType: "json",
@@ -19,7 +19,7 @@ $(document).ready(function () {
   $miSelect.on("change", function () {
     let cod_asign_cargo_per = $(this).find(":selected").attr("value");
     if (cod_asign_cargo_per != "") {
-      localStorage.setItem("cod_asign_cargo_per",cod_asign_cargo_per)
+      localStorage.setItem("cod_asign_cargo_per", cod_asign_cargo_per);
       setTimeout(function () {
         $("#search-bar").trigger("click");
       }, 1000);
@@ -31,7 +31,7 @@ $(document).ready(function () {
   $searchBar.on("input click", function () {
     let searchValue = $(this).val();
     $.ajax({
-      url: "/igbj/search_assigned_assets",
+      url: baseURL + "/search_assigned_assets",
       method: "POST",
       data: {
         search_term: searchValue,
@@ -89,7 +89,7 @@ function update(data) {
           .click(function () {
             localStorage.clear();
             localStorage.setItem("asset_id", value["CODACTIVO"]);
-            window.location.href = "/igbj/RUTA";
+            window.location.href = baseURL + "/RUTA";
           })
       )
     );

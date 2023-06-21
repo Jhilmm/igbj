@@ -20,9 +20,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- importando dominio para peticiones ajax-->
+<script>
+     const baseURL = "<?php echo BASE_URL_DOMAIN; ?>";
+</script>
 
 <!-- script.menu 1.0.0 -->
 <script src="<?php DOCUMENT_ROOT; ?>public/scripts/menu.js" defer></script>
+
+<?php if (strpos(REQUEST_URI, '/login') !== false) { ?>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/auth/login.js"></script>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/auth/form_validation.js"></script>
+<?php } ?>
 
 <?php if (strpos(REQUEST_URI, '/personal') !== false) { ?>
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/personnel/view.js"></script>

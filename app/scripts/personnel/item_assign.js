@@ -9,7 +9,7 @@ $(document).ready(function () {
     date.click();
     if (!item.hasClass("is-invalid") && !date.hasClass("is-invalid")) {
       $.ajax({
-        url: "/igbj/assign_item",
+        url: baseURL + "/assign_item",
         type: "POST",
         data: formulario
           .serializeArray()
@@ -20,7 +20,7 @@ $(document).ready(function () {
         success: function (response, status, xhr) {
           if (xhr.status === 200) {
             alert(response);
-            window.location.replace("/igbj/personal");
+            window.location.replace(baseURL + "/personal");
           } else {
             console.log(response);
           }
@@ -50,7 +50,7 @@ function load_person_information() {
 
 function load_all_items() {
   $.ajax({
-    url: "/igbj/get_all_items",
+    url: baseURL + "/get_all_items",
     method: "POST",
     success: function (data) {
       update(data);

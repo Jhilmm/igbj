@@ -1,7 +1,7 @@
 $(document).ready(function () {
   setTimeout(function () {
     $.ajax({
-      url: "/igbj/personnel_position_search",
+      url: baseURL + "/personnel_position_search",
       method: "POST",
       data: { assign_position_id: localStorage.getItem("assign_position_id") },
       dataType: "json",
@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
     if (is_valid_form == true) {
       $.ajax({
-        url: "/igbj/update_position_assigned",
+        url: baseURL + "/update_position_assigned",
         type: "POST",
         data: formulario.serializeArray().concat([
           {
@@ -39,7 +39,7 @@ $(document).ready(function () {
         success: function (response, status, xhr) {
           if (xhr.status === 200) {
             alert(response);
-            window.location.replace("/igbj/personal");
+            window.location.replace(baseURL + "/personal");
           }
         },
         error: function (xhr, status, error) {
@@ -68,7 +68,7 @@ function updateForm(data) {
 
 function load_all_departments(cod_department, cod_cargo) {
   $.ajax({
-    url: "/igbj/get_all_departments",
+    url: baseURL + "/get_all_departments",
     method: "POST",
     success: function (data) {
       updateDepartmentOptions(data).then(function () {
@@ -108,20 +108,22 @@ function updateDepartmentOptions(data) {
 let positionCodeExecuted = false;
 function load_all_position(cod_department, cod_cargo) {
   $.ajax({
-    url: "/igbj/get_all_position",
+    url: baseURL + "/get_all_position",
     method: "POST",
     data: { cod_department: cod_department },
     dataType: "json",
     success: function (data) {
       updatePositionOptions(data).then(function () {
         if (!positionCodeExecuted) {
-          $("#position").find("option").each(function () {
-            if ($(this).val() == cod_cargo) {
-              $(this).attr("selected", true);
-            }
-          });
+          $("#position")
+            .find("option")
+            .each(function () {
+              if ($(this).val() == cod_cargo) {
+                $(this).attr("selected", true);
+              }
+            });
           positionCodeExecuted = true;
-        }  
+        }
       });
     },
   });

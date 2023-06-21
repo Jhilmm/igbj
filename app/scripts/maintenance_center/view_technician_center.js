@@ -6,7 +6,7 @@ $(document).ready(function () {
   $searchBar.on("input click", function () {
     let searchValue = $(this).val();
     $.ajax({
-      url: "/igbj/technician_center_search",
+      url: baseURL + "/technician_center_search",
       method: "POST",
       data: {
         center_id: localStorage.getItem("center_id"),
@@ -62,7 +62,7 @@ function update(data) {
 
 function enable_disable($id, $state) {
   $.ajax({
-    url: "/igbj/technician_center_enable_disable",
+    url: baseURL + "/technician_center_enable_disable",
     method: "POST",
     data: { row_id: $id, state: $state },
     dataType: "json",

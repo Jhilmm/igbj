@@ -6,7 +6,7 @@ $(document).ready(function () {
   $searchBar.on("input click", function () {
     let searchValue = $(this).val();
     $.ajax({
-      url: "/igbj/technician_assign_search",
+      url: baseURL + "/technician_assign_search",
       method: "POST",
       data: {
         search_term: searchValue,
@@ -45,12 +45,12 @@ function update(data) {
 
 function asign_tec_of_center(center_id, assign_id) {
   $.ajax({
-    url: "/igbj/assign_technician_center",
+    url: baseURL + "/assign_technician_center",
     method: "POST",
     data: { center_id: center_id, assign_id: assign_id },
     dataType: "json",
     success: function (data) {
-      window.location.href = "/igbj/ver_tecnicos_centro_mantenimiento";
+      window.location.href = baseURL + "/ver_tecnicos_centro_mantenimiento";
     },
   });
 }

@@ -15,14 +15,14 @@ $(document).ready(function () {
     });
     if (is_valid_form == true) {
       $.ajax({
-        url: "/igbj/maintenance_center_register",
+        url: baseURL + "/maintenance_center_register",
         type: "POST",
         data: formulario.serializeArray(),
         dataType: "text",
         success: function (response, status, xhr) {
           if (xhr.status === 200) {
             alert(response);
-            window.location.replace("/igbj/centros_mantenimiento");
+            window.location.replace(baseURL + "/centros_mantenimiento");
           } else {
             console.log(response);
           }
