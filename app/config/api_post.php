@@ -1,6 +1,11 @@
 <?php
 
 $routes_post = [
+    'authenticate' => [
+        'controller' => 'AuthController',
+        'action' => 'authenticate',
+        'methods' => ['POST']
+    ],
     'personnel_search' => [
         'controller' => 'PersonnelController',
         'action' => 'searchPersonnel',

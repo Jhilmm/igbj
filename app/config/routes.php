@@ -1,4 +1,5 @@
 <?php
+require_once DOCUMENT_ROOT . 'app/controllers/user/AuthController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/HomeController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/LoginController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/personnel/PersonnelController.php';
