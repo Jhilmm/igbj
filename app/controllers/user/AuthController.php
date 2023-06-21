@@ -1,6 +1,10 @@
 <?php
 class AuthController
 {
+    public function login()
+    {
+        include('app/views/auth/login.php');
+    }
     public function authenticate($postData)
     {
         try {

@@ -5,6 +5,11 @@ $routes_get = [
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'login' => [
+        'controller' => 'AuthController',
+        'action' => 'login',
+        'methods' => ['GET']
+    ],
     'personal' => [
         'controller' => 'PersonnelController',
         'action' => 'index',
