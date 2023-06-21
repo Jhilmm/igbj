@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
     if (is_valid_form == true) {
       $.ajax({
-        url: "/igbj/assign_position",
+        url: baseURL + "/assign_position",
         type: "POST",
         data: formulario.serializeArray().concat([
           {
@@ -28,7 +28,7 @@ $(document).ready(function () {
         success: function (response, status, xhr) {
           if (xhr.status === 200) {
             alert(response);
-            window.location.replace("/igbj/personal");
+            window.location.replace(baseURL + "/personal");
           }
         },
         error: function (xhr, status, error) {
@@ -52,7 +52,7 @@ function updateForm() {
 
 function load_all_departments() {
   $.ajax({
-    url: "/igbj/get_all_departments",
+    url: baseURL + "/get_all_departments",
     method: "POST",
     success: function (data) {
       updateDepartmentOptions(data).then(function () {
@@ -83,13 +83,12 @@ function updateDepartmentOptions(data) {
 
 function load_all_position(cod_department) {
   $.ajax({
-    url: "/igbj/get_all_position",
+    url: baseURL + "/get_all_position",
     method: "POST",
     data: { cod_department: cod_department },
     dataType: "json",
     success: function (data) {
-      updatePositionOptions(data).then(function () {
-      });
+      updatePositionOptions(data).then(function () {});
     },
   });
 }

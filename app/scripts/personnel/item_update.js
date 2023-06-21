@@ -10,7 +10,7 @@ $(document).ready(function () {
     if (!item.hasClass("is-invalid") && !date.hasClass("is-invalid")) {
       let val = localStorage.getItem("personnel_id");
       $.ajax({
-        url: "/igbj/update_item_assigned",
+        url: baseURL + "/update_item_assigned",
         type: "POST",
         data: formulario.serializeArray().concat([
           {
@@ -22,7 +22,7 @@ $(document).ready(function () {
         success: function (response, status, xhr) {
           if (xhr.status === 200) {
             alert(response);
-            window.location.replace("/igbj/personal");
+            window.location.replace(baseURL + "/personal");
           }
         },
         error: function (xhr, status, error) {
@@ -56,7 +56,7 @@ function load_person_information() {
 
 function load_all_items() {
   $.ajax({
-    url: "/igbj/get_all_items",
+    url: baseURL + "/get_all_items",
     method: "POST",
     success: function (data) {
       update(data);
@@ -70,7 +70,9 @@ function update(data) {
     $("<option>").attr("value", "").text("Seleccione una opción")
   );
   elem_select.append(
-    $("<option>").attr("value", localStorage.getItem("item_id")).text("TIENES ASIGNADO EL ITEM: "+localStorage.getItem("item_id"))
+    $("<option>")
+      .attr("value", localStorage.getItem("item_id"))
+      .text("TIENES ASIGNADO EL ITEM: " + localStorage.getItem("item_id"))
       .prop("selected", true)
   );
   $.each(data, function (index, value) {

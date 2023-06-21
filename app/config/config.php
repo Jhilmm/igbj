@@ -2,6 +2,7 @@
 
 define('DOCUMENT_ROOT', dirname(__FILE__) . '/../../');
 define('REQUEST_URI', $_SERVER['REQUEST_URI']);
+define('BASE_URL_DOMAIN', '/igbj/');
 
 
 // Configuración de la aplicación

@@ -6,7 +6,7 @@ $(document).ready(function () {
   $searchBar.on("input click", function () {
     var searchValue = $(this).val();
     $.ajax({
-      url: "/igbj/maintenance_center_search",
+      url: baseURL + "/maintenance_center_search",
       method: "POST",
       data: { search_term: searchValue },
       dataType: "json",
@@ -31,7 +31,7 @@ function update(data) {
           .click(function () {
             localStorage.clear();
             localStorage.setItem("center_id", value["CODCENTRO"]);
-            window.location.href = "/igbj/actualizar_centro_mantenimiento";
+            window.location.href = baseURL + "/actualizar_centro_mantenimiento";
           })
       )
     );
@@ -42,7 +42,8 @@ function update(data) {
           .click(function () {
             localStorage.clear();
             localStorage.setItem("center_id", value["CODCENTRO"]);
-            window.location.href = "/igbj/ver_tecnicos_centro_mantenimiento";
+            window.location.href =
+              baseURL + "/ver_tecnicos_centro_mantenimiento";
           })
       )
     );
@@ -78,7 +79,7 @@ function update(data) {
 }
 function enableDisableMaintenanceCenter($center_id, $state) {
   $.ajax({
-    url: "/igbj/maintenance_center_enable_disable",
+    url: baseURL + "/maintenance_center_enable_disable",
     method: "POST",
     data: { row_id: $center_id, state: $state },
     dataType: "json",

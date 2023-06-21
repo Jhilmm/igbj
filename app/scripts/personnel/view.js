@@ -6,7 +6,7 @@ $(document).ready(function () {
   $searchBar.on("input click", function () {
     var searchValue = $(this).val();
     $.ajax({
-      url: "/igbj/personnel_search",
+      url: baseURL + "/personnel_search",
       method: "POST",
       data: { search_term: searchValue },
       dataType: "json",
@@ -40,12 +40,12 @@ function updateDepartmentOptions(data) {
           .click(function () {
             localStorage.clear();
             localStorage.setItem("person_id", value["CI"]);
-            window.location.href = "/igbj/actualizar_persona";
+            window.location.href = baseURL + "/actualizar_persona";
           })
       )
     );
     $.ajax({
-      url: "/igbj/has_item_assigned",
+      url: baseURL + "/has_item_assigned",
       method: "POST",
       data: { num_ci: value["CI"] },
       dataType: "json",
@@ -70,12 +70,12 @@ function updateDepartmentOptions(data) {
                   localStorage.setItem("personnel_id", res.CODPERSONAL);
                   localStorage.setItem("item_id", res.CODITEM);
                   localStorage.setItem("date", res.FECHAASIGNACION);
-                  window.location.href = "/igbj/cambiar_item_asignado";
+                  window.location.href = baseURL + "/cambiar_item_asignado";
                 })
             )
           );
           $.ajax({
-            url: "/igbj/has_position_assigned",
+            url: baseURL + "/has_position_assigned",
             method: "POST",
             data: { num_ci: value["CI"] },
             dataType: "json",
@@ -101,7 +101,7 @@ function updateDepartmentOptions(data) {
                             value["APMATERNO"]
                         );
                         localStorage.setItem("item_id", position.CODITEM);
-                        window.location.href = "/igbj/actualizar_cargo";
+                        window.location.href = baseURL + "/actualizar_cargo";
                       })
                   )
                 );
@@ -123,7 +123,7 @@ function updateDepartmentOptions(data) {
                         );
                         localStorage.setItem("personnel_id", res.CODPERSONAL);
                         localStorage.setItem("item_id", res.CODITEM);
-                        window.location.href = "/igbj/asignar_cargo";
+                        window.location.href = baseURL + "/asignar_cargo";
                       })
                   )
                 );
@@ -146,7 +146,7 @@ function updateDepartmentOptions(data) {
                       " " +
                       value["APMATERNO"]
                   );
-                  window.location.href = "/igbj/asignar_item";
+                  window.location.href = baseURL + "/asignar_item";
                 })
             )
           );
