@@ -13,9 +13,9 @@
     <div class="form-group">
             <label for="profession">Seleccione Clase:</label>
             <select name="clase" id="clase" class="form-control" onchange="cargarClase();">
-                <option value="" disabled="disabled" selected>Seleccione Proveedor</option>
+                <option value="" disabled="disabled" selected>Seleccione Clase</option>
             <?php foreach ($clases as $clase): 
-                    if($clase['CODCLASE']===$classes){
+                    if($clase['CODCLASE']===$codClase){
                         echo '<option selected value=' . $clase['CODCLASE'] . '>' . $clase["CLASE"] . '</option>';
                     }else{
                         echo '<option value=' . $clase['CODCLASE'] . '>'. $clase["CLASE"] . '</option>';
@@ -57,11 +57,11 @@
                         </div>                                              
                         <?php if ($tabla["ESTADO"] == 1): ?>
                             <div class="icons deshabilitar d-flex justify-content-center">
-                                <a href="#" class="fas fa-lock-open align-self-center"></a>
+                                <a href="/igbj/deshabilitar_catalogo?codigo=<?= $tabla["CODCATALOGO"];?>&clase=<?php echo $codClase; ?>" class="fas fa-lock-open align-self-center"></a>
                             </div>
                         <?php else: ?>
                             <div class="icons habilitar d-flex justify-content-center">
-                                <a href = "#" class="fas fa-lock align-self-center"></a>
+                                <a href="/igbj/habilitar_catalogo?codigo=<?= $tabla["CODCATALOGO"];?>&clase=<?php echo $codClase; ?>" class="fas fa-lock align-self-center"></a>
                             </div>
                         <?php endif; ?>
                     </td>

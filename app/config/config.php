@@ -11,10 +11,10 @@ define('APP_ENVIRONMENT', 'development');
 
 function get_connection()
 {
-    $servername = "db";
+    $servername = "localhost";
     $database = "mantenimientos";
     $username = "root";
-    $password = "pwdRoot";
+    $password = "";
     try {
         $conn = mysqli_connect($servername, $username, $password, $database);
         if (!$conn) {

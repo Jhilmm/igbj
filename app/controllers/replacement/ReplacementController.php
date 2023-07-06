@@ -1,10 +1,10 @@
 <?php
-class RepuestoController
+class ReplacementController
 {
     public function index()
     {        
         $repuestos= $this->view();
-        include('app/views/repuestos/repuesto_view.php');                         
+        include('app/views/replacements/replacement_view.php');                         
     }
 
     public function view() 
@@ -18,7 +18,7 @@ class RepuestoController
         }
     }
 
-    public function register_rep()
+    public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name_rep = $_POST['name_rep'];
@@ -29,16 +29,36 @@ class RepuestoController
             $cant = $_POST['cant'];
             $cod_tipo_rep = $_POST['name_tipo_rep'];
 
-            $departamentos = $this->register($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,1,$cod_tipo_rep);
+            $departamentos = $this->replacement_register($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,1,$cod_tipo_rep);
             header("Location: /igbj/repuesto");
             exit();
         }else{
             $tipoRep= $this->tipoRep();
-            include('app/views/repuestos/repuesto_register.php');
+            include('app/views/replacements/replacement_register.php');
         }
     }
 
-    public function register($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$est_rep, $cod_tipo_rep)
+    public function enable()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $repuesto = $_GET['codigo'];          
+            $repuesto = $this->enable_replacement($repuesto);
+            header("Location: /igbj/repuesto");
+            exit();
+        }
+    }
+
+    public function disable()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $repuesto = $_GET['codigo'];            
+            $repuesto = $this->disable_replacement($repuesto);
+            header("Location: /igbj/repuesto");
+            exit();
+        }
+    }
+
+    public function replacement_register($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,$est_rep, $cod_tipo_rep)
     {
         $conn = get_connection();
         $stmt = $conn->prepare("CALL DB_SP_Repuestos_add(?,?,?,?,?,?,?,?)");
@@ -70,7 +90,7 @@ class RepuestoController
             $cod_rep = $_GET['repuesto'];            
             $repuestos = $this->viewUpdate($cod_rep);
             $tipoRep= $this->tipoRep();
-            include('app/views/repuestos/repuesto_update.php');
+            include('app/views/replacements/replacement_update.php');
         }
     }
 
@@ -147,5 +167,27 @@ class RepuestoController
         }
     }
 
-    
+    //Funcion para habilitar un cargo
+    public function enable_replacement($codigo)
+    {
+        $conn = get_connection();
+        $query = 'CALL DB_SP_Repuestos_enable("' . $codigo . '")';
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+    //Funcion para deshabilitar un cargo
+    public function disable_replacement($codigo)
+    {
+        $conn = get_connection();
+        $query = 'CALL DB_SP_Repuestos_disable("' . $codigo . '")';
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
 }

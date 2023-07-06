@@ -39,15 +39,15 @@
                     </td>
                     <td class="acciones">
                         <div class="icons modificar d-flex justify-content-center">
-                            <a href="#" class="fas fa-pen align-self-center"></a>
+                            <a href="/igbj/modificar_tarea?tarea=<?= $tabla['CODTAREA'];?>&codCat=<?php echo $catalogo["CODCATALOGO"];?>" class="fas fa-pen align-self-center"></a>
                         </div>                                              
                         <?php if ($tabla["ESTADO"] == 1): ?>
                             <div class="icons deshabilitar d-flex justify-content-center">
-                                <a href="#" class="fas fa-lock-open align-self-center"></a>
+                                <a href="/igbj/deshabilitar_tarea?codigo=<?= $tabla['CODTAREA'];?>&codCat=<?php echo $catalogo["CODCATALOGO"];?>" class="fas fa-lock-open align-self-center"></a>
                             </div>
                         <?php else: ?>
                             <div class="icons habilitar d-flex justify-content-center">
-                                <a href = "#" class="fas fa-lock align-self-center"></a>
+                                <a href="/igbj/habilitar_tarea?codigo=<?= $tabla['CODTAREA'];?>&codCat=<?php echo $catalogo["CODCATALOGO"];?>" class="fas fa-lock align-self-center"></a>
                             </div>
                         <?php endif; ?>
                     </td>

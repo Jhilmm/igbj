@@ -46,6 +46,7 @@
             <li class="active">
                 <a class="dropdown-item" href="/igbj/activo">Activos</a>
             </li>
+            
             <li class="active">
                 <a class="dropdown-item" href="/igbj/asignar_activo">Asignar Activos</a>
             </li>
@@ -53,7 +54,7 @@
                 <a class="dropdown-item" href="/igbj/catalogo">Catálogos</a>
             </li>
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/cargos/cargo_view.php">Cargos</a>
+                <a class="dropdown-item" href="/igbj/cargo">Cargos</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj/centros_mantenimiento">Centros de Mantenimiento</a>
@@ -70,7 +71,7 @@
                 <a class="dropdown-item" href="/igbj/proveedor">Proveedores</a>
             </li>
             <li>
-                <a class="dropdown-item" href="/igbj_mantenimientos/includes/repuestos/repuesto_view.php">Repuestos</a>
+                <a class="dropdown-item" href="/igbj/repuesto">Repuestos</a>
             </li>
             <li>
                 <a class="dropdown-item" href="/igbj/orden_trabajo">Ordenes de trabajo</a>

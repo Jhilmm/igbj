@@ -18,12 +18,12 @@ require_once DOCUMENT_ROOT . 'app/controllers/work_order/WorkOrderController.php
 require_once DOCUMENT_ROOT . 'app/controllers/work_order/WorkOrderItemController.php';
 
 #Limbert
-require_once DOCUMENT_ROOT . 'app/controllers/CargoController.php';
-require_once DOCUMENT_ROOT . 'app/controllers/RepuestoController.php';
-require_once DOCUMENT_ROOT . 'app/controllers/ActivoController.php';
-require_once DOCUMENT_ROOT . 'app/controllers/CatalogoController.php';
-require_once DOCUMENT_ROOT . 'app/controllers/TareaController.php';
-require_once DOCUMENT_ROOT . 'app/controllers/SubtareaController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/asset/AssetController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/post/PostController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/catalogue/CatalogueController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/catalogue/TaskController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/catalogue/SmallTaskController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/replacement/ReplacementController.php';
 
 $routes_darwin = [
     'departamento' => [
@@ -107,77 +107,153 @@ $routes_darwin = [
 ];
 
 $routes_limbert = [
-    'cargo' => [
-        'controller' => 'CargoController',
-        'action' => 'index',
-        'methods' => ['GET']
-    ],
-    'registrar_cargo' => [
-        'controller' => 'CargoController',
-        'action' => 'registerCargo',
-        'methods' => ['GET', 'POST']
-    ],
-
-    'repuesto' => [
-        'controller' => 'RepuestoController',
-        'action' => 'index',
-        'methods' => ['GET']
-    ],
-    'registrar_repuesto' => [
-        'controller' => 'RepuestoController',
-        'action' => 'register_rep',
-        'methods' => ['GET', 'POST']
-    ],
-    'actualizar_repuesto' => [
-        'controller' => 'RepuestoController',
-        'action' => 'update',
-        'methods' => ['GET', 'POST']
-    ],
     'activo' => [
-        'controller' => 'ActivoController',
+        'controller' => 'AssetController',
         'action' => 'index',
         'methods' => ['GET']
     ],
     'registrar_activo' => [
-        'controller' => 'ActivoController',
-        'action' => 'register_act',
+        'controller' => 'AssetController',
+        'action' => 'register',
         'methods' => ['GET', 'POST']
     ],
+    'habilitar_activo' => [
+        'controller' => 'AssetController',
+        'action' => 'enable',
+        'methods' => ['GET']
+    ],
+    'deshabilitar_activo' => [
+        'controller' => 'AssetController',
+        'action' => 'disable',
+        'methods' => ['GET']
+    ],
+
+    'cargo' => [
+        'controller' => 'PostController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_cargo' => [
+        'controller' => 'PostController',
+        'action' => 'register',
+        'methods' => ['GET', 'POST']
+    ],
+    'habilitar_cargo' => [
+        'controller' => 'PostController',
+        'action' => 'enable',
+        'methods' => ['GET']
+    ],
+    'deshabilitar_cargo' => [
+        'controller' => 'PostController',
+        'action' => 'disable',
+        'methods' => ['GET']
+    ],
+
     'catalogo' => [
-        'controller' => 'CatalogoController',
+        'controller' => 'CatalogueController',
         'action' => 'index',
         'methods' => ['GET']
     ],
     'registrar_catalogo' => [
-        'controller' => 'CatalogoController',
-        'action' => 'register_cat',
+        'controller' => 'CatalogueController',
+        'action' => 'register',
         'methods' => ['GET', 'POST']
     ],
     'modificar_catalogo' => [
-        'controller' => 'CatalogoController',
+        'controller' => 'CatalogueController',
         'action' => 'update',
         'methods' => ['GET', 'POST']
     ],
+    'habilitar_catalogo' => [
+        'controller' => 'CatalogueController',
+        'action' => 'enable',
+        'methods' => ['GET']
+    ],
+    'deshabilitar_catalogo' => [
+        'controller' => 'CatalogueController',
+        'action' => 'disable',
+        'methods' => ['GET']
+    ],
+
+
+    'repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'registrar_repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'register',
+        'methods' => ['GET', 'POST']
+    ],
+    'actualizar_repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'update',
+        'methods' => ['GET', 'POST']
+    ],
+    'habilitar_repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'enable',
+        'methods' => ['GET']
+    ],
+    'deshabilitar_repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'disable',
+        'methods' => ['GET']
+    ],
+
+    
     'tarea' => [
-        'controller' => 'TareaController',
+        'controller' => 'TaskController',
         'action' => 'index',
         'methods' => ['GET']
     ],
     'registrar_tarea' => [
-        'controller' => 'TareaController',
-        'action' => 'register_tar',
+        'controller' => 'TaskController',
+        'action' => 'register',
         'methods' => ['GET', 'POST']
     ],
+    'modificar_tarea' => [
+        'controller' => 'TaskController',
+        'action' => 'update',
+        'methods' => ['GET', 'POST']
+    ],
+    'habilitar_tarea' => [
+        'controller' => 'TaskController',
+        'action' => 'enable',
+        'methods' => ['GET']
+    ],
+    'deshabilitar_tarea' => [
+        'controller' => 'TaskController',
+        'action' => 'disable',
+        'methods' => ['GET']
+    ],
+
     'subtarea' => [
-        'controller' => 'SubtareaController',
+        'controller' => 'SmallTaskController',
         'action' => 'index',
         'methods' => ['GET']
     ],
     'registrar_subtarea' => [
-        'controller' => 'SubtareaController',
-        'action' => 'register_sub',
+        'controller' => 'SmallTaskController',
+        'action' => 'register',
         'methods' => ['GET', 'POST']
     ],
+    'modificar_subtarea' => [
+        'controller' => 'SmallTaskController',
+        'action' => 'update',
+        'methods' => ['GET', 'POST']
+    ],
+    'habilitar_subtarea' => [
+        'controller' => 'SmallTaskController',
+        'action' => 'enable',
+        'methods' => ['GET']
+    ],
+    'deshabilitar_subtarea' => [
+        'controller' => 'SmallTaskController',
+        'action' => 'disable',
+        'methods' => ['GET']
+    ]
 ];
 
 $routes = array_merge($routes_get, $routes_post, $routes_darwin, $routes_limbert);
