@@ -12,22 +12,25 @@ class AssetController
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $name_rep = $_POST['name_rep'];
-            $det_rep = $_POST['det_rep'];
-            $fec_ing = $_POST['fec_ing'];
-            $marca = $_POST['marca'];
+            $proveedor = $_POST['proveedor'];
+            //$clase = $_POST['clase'];
+            //$marca = $_POST['marca'];
             $modelo = $_POST['modelo'];
-            $cant = $_POST['cant'];
-            $cod_tipo_rep = $_POST['name_tipo_rep'];
-
-            $departamentos = $this->register_asset($name_rep, $det_rep, $fec_ing,$marca,$modelo,$cant,1,$cod_tipo_rep);
-            header("Location: /igbj/repuesto");
+            $procedencia = $_POST['procedencia'];
+            $fabricacion = $_POST['fabricacion'];
+            $serie = $_POST['serie'];
+            $cod_act = $_POST['cod_act'];
+            $fec_ing = $_POST['fec_ing'];
+            $descripción = $_POST['descripción'];
+            $usuario = $_POST['usuario'];
+            $fotografia = addslashes(file_get_contents($_FILES['fotografia']['tmp_name']));
+            
+            $activos = $this->register_asset($proveedor, $modelo, $descripción, true, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $usuario);
+            header("Location: /igbj/activo");
             exit();
         }else{
-            $proveedor= $this->get_proveedor();
-            //$clases= $this->get_clase_marca();
-            
-            //$clases= $this->get_clase_marca_by_codclase($uno);
+            $proveedores = $this->get_provider();
+            $procedencias = $this->get_origin();
             include('app/views/assets/asset_register.php');
         }
     }
@@ -117,10 +120,21 @@ class AssetController
         }
     }
     
-    function get_proveedor()
+    function get_provider()
     {
         $conn = get_connection();
         $query = "SELECT * FROM DB_VIEW_Provedor_view";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+    function get_origin()
+    {
+        $conn = get_connection();
+        $query = "SELECT * FROM DB_VIEW_Procedencia_view";
         if ($result = $conn->query($query)) {
             return $result;
         } else {
@@ -153,12 +167,12 @@ class AssetController
 }
 
 //metodo para registrar activo en la base de datos
-
-    public function register_asset($name_depa, $cargo, $est_cargo)
+/*
+    public function register_asset($proveedor, $modelo, $descripción, $estado, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $usuario)
     {
         $conn = get_connection();
-        $stmt = $conn->prepare("CALL DB_SP_Cargo_add(?,?,?)");
-        $stmt->bind_param("isi",$name_depa, $cargo, $est_cargo );
+        $stmt = $conn->prepare("CALL DB_SP_Activo_add(?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sisiississi", $proveedor, $modelo, $descripción, $estado, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $usuario);
         if ($stmt->execute()) {
             $stmt->close();
             return true;
@@ -166,7 +180,20 @@ class AssetController
             $stmt->close();
             return false;
         }
-    }  
+    }*/
+
+    function register_asset( $proveedor, $modelo, $descripción, $estado, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $usuario)
+{
+    $conn = get_connection();
+    $query = "INSERT INTO activo (NITPROVEEDOR, CODMODELO, DESCRIPCION, ESTADOACTIVO, CODPROCEDENCIA, CODACTIVOFIJO, SERIE, ANIOFABRICACION, FECHAINGRESO, FOTOGRAFIA, USUARIOREGISTRO) values 
+                                   ('$proveedor ','$modelo ','$descripción','$estado','$procedencia','$cod_act','$serie','$fabricacion','$fec_ing','$fotografia','$usuario');
+";
+    if ($result = $conn->query($query)) {
+        return $result;
+    } else {
+        return null;
+    }
+}
 
     //Funcion para habilitar un departamento
     public function enableAsset($cod_act)

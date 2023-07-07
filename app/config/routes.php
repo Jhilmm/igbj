@@ -153,6 +153,11 @@ $routes_limbert = [
         'action' => 'register',
         'methods' => ['GET', 'POST']
     ],
+    'modificar_cargo' => [
+        'controller' => 'PostController',
+        'action' => 'update',
+        'methods' => ['GET', 'POST']
+    ],
     'habilitar_cargo' => [
         'controller' => 'PostController',
         'action' => 'enable',

@@ -2,7 +2,7 @@
 
 
 <div class="container">
-    <h1 class="h1 text-center mt-5 mb-4">REGISTRAR NUEVO ACTIVO</h1>
+    <h1 class="h1 text-center mt-5 mb-4">MODIFICAR ACTIVO</h1>
     <form action="registrar_activo" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="profession">Proveedor:</label>
@@ -78,7 +78,7 @@
             <label for="fec_ing">Fecha de ingreso:</label>
             <br>
             <input class="form-control" type="date" name="fec_ing" id="des_cargo" min="<?php echo $year_init . "-" . $date; ?>" max="<?php echo $year_fin . "-" . $date; ?>" required>
-            
+
         </div>
 
         <div class="form-group">

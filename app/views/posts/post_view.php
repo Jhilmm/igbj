@@ -35,7 +35,7 @@
                     </td>
                     <td class="acciones">
                         <div class="icons modificar d-flex justify-content-center">
-                            <a href="#" class="fas fa-pen align-self-center"></a>
+                            <a href="/igbj/modificar_cargo?cargo=<?= $cargo['CODCARGO']; ?>" class="fas fa-pen align-self-center"></a>
                         </div>                                              
                         <?php if ($cargo['ESTADO'] == 1): ?>
                             <div class="icons deshabilitar d-flex justify-content-center">
