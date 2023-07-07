@@ -127,6 +127,21 @@ $routes_limbert = [
         'action' => 'disable',
         'methods' => ['GET']
     ],
+    'obtener_clase' => [
+        'controller' => 'AssetController',
+        'action' => 'get_class',
+        'methods' => ['GET']
+    ],
+    'obtener_marca' => [
+        'controller' => 'AssetController',
+        'action' => 'get_mark',
+        'methods' => ['POST']
+    ],
+    'obtener_modelo' => [
+        'controller' => 'AssetController',
+        'action' => 'get_model',
+        'methods' => ['POST']
+    ],
 
     'cargo' => [
         'controller' => 'PostController',

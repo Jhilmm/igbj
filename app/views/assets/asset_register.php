@@ -12,86 +12,30 @@
                 <option value="<?=$prov['NIT'];?>" ><?= $prov["NOMPROVEEDOR"]; ?></option>
             <?php endforeach; ?>
             </select>
-            <div class="invalid-feedback" id="profession-feedback">
-                Seleccione una profesión.
-            </div>
         </div>
         
 
         <div class="form-group">
             <label for="profession">Clase:</label>
-            <select name="name_depa" id="clase" class="form-control" onchange="cargarMarca();" required>
-                <option value="" disabled="disabled" selected>Seleccione Proveedor</option>
-            <?php foreach ($clases as $clase): 
-                    if($clase['CODCLASE']===$classes){
-                        echo '<option selected value=' . $clase['CODCLASE'] . '>' . $clase["CLASE"] . '</option>';
-                    }else{
-                        echo '<option value=' . $clase['CODCLASE'] . '>'. $clase["CLASE"] . '</option>';
-                    }    
-                  endforeach; ?>
+            <select name="name_depa" id="clase" class="form-control" required>
+                
             </select>
-            <div class="invalid-feedback" id="profession-feedback">
-                Seleccione una profesión.
-            </div>
+            
         </div>
 
         <div class="form-group">
             <label for="profession">Marca:</label>
-            <select name="name_depa" id="marca" class="form-control" onchange="cargarModelo();" required>
-            <?php foreach ($marcas as $marca): 
-                    if($marca['CODMARCA']===$marcca){
-                        echo '<option selected value=' . $marca['CODMARCA']. '>' . $marca['MARCA'] . '</option>';
-                    }else{
-                        echo '<option value=' . $marca['CODMARCA'] . '>'. $marca["MARCA"] . '</option>';
-                    }    
-                  endforeach; ?>
+            <select name="name_depa" id="marca" class="form-control" required>
+            
             </select>
-            </select>
-
-            <div class="invalid-feedback" id="profession-feedback">
-                Seleccione una profesión.
-            </div>
         </div>
-
-        
 
         <div class="form-group">
             <label for="profession">Modelo:</label>
             <select name="name_depa" id="modelo" class="form-control" required>
-                <option value="" disabled="disabled" selected>Seleccione Proveedor</option>
-            <?php foreach ($modelos as $modelo): 
-                    
-            ?>
-                <option value="<?=$modelo['CODMODELO'];?>" ><?= $modelo["MODELO"]; ?></option>
-            <?php endforeach; ?>
+                
             </select>
-            <div class="invalid-feedback" id="profession-feedback">
-                Seleccione una profesión.
-            </div>
         </div>
-
-        <script language="javaScript">
-
-        function cargarMarca(){
-                    
-                    var clase = document.getElementById("clase").value;
-                    window.location.href="registrar_activo?clase="+clase;
-        }
-
-        /*
-        function cargarModelo(){
-                    var clase = document.getElementById("name_clase").value;
-                    var marca = document.getElementById("name_marca").value;
-                    window.location.href="activo_register.php?clase="+clase+"&marca="+marca;
-        }*/
-        
-
-                function cargarModelo(){
-                    var clase = document.getElementById("modelo").value;
-                    var marca = document.getElementById("modelo").value;
-                    window.location.href="registrar_activo?clase="+clase+"&marca="+marca;
-                }
-        </script>
 
         <div class="form-group">
             <label for="profession">Procedencia:</label>
@@ -168,4 +112,8 @@
         <input type="submit" class="btn btn-primary" value="Enviar">
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/igbj/app/scripts/asset/asset_register.js"></script>
+
 <?php include('app/views/components/footer.php'); ?>

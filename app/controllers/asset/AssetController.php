@@ -2,14 +2,13 @@
 
 class AssetController
 {
-    //funcion para redirigir a la página principal del activo
+
     public function index()
     {        
         $activos= $this->view();
         include('app/views/assets/asset_view.php');                         
     }
 
-    //funcion para redirigir a la página de registro del activo y registro del formulario
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,20 +25,8 @@ class AssetController
             exit();
         }else{
             $proveedor= $this->get_proveedor();
-            $clases= $this->get_clase_marca();
-            $classes = "0";
-            $marcca = "0";
-            if(isset($_GET["clase"])){
-                $classes = $_GET["clase"];
-                $marcas = $this->get_clase_marca_by_codclase($classes);
-                $row= $marcas->fetch_array(MYSQLI_BOTH);
-                $modelos = $this->get_modelo($row["CODMARCA"]);
-            }
-            if(isset($_GET["marca"])){
-                $marcca = $_GET["marca"];
-            }
+            //$clases= $this->get_clase_marca();
             
-            $uno = 1;
             //$clases= $this->get_clase_marca_by_codclase($uno);
             include('app/views/assets/asset_register.php');
         }
@@ -77,7 +64,58 @@ class AssetController
         }
     }
 
+    
+    function get_class()
+    {
+            $conn = get_connection();
+            $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view";
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'CODCLASE' => $row['CODCLASE'],
+                    'CLASE' => $row['CLASE']
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+    }
 
+    function get_mark(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $codigo = $_POST['codigoC'];
+            $conn = get_connection();
+            $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view WHERE CODCLASE='$codigo'";
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'CODMARCA' => $row['CODMARCA'],
+                    'MARCA' => $row['MARCA']
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+        }
+    }
+
+    function get_model(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $codigo = $_POST['codigoMo'];
+            $conn = get_connection();
+            $query = $query = 'CALL DB_SP_MarcaModelo_search_id("'. $codigo .'")';
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'CODMODELO' => $row['CODMODELO'],
+                    'MODELO' => $row['MODELO']
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+        }
+    }
     
     function get_proveedor()
     {
@@ -90,26 +128,7 @@ class AssetController
         }
     }
 
-    function get_clase_marca()
-{
-    $conn = get_connection();
-    $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view";
-    if ($result = $conn->query($query)) {
-        return $result;
-    } else {
-        return null;
-    }
-}
-
-    function get_clase_marca_by_codclase($id){
-        $conn = get_connection();
-        $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view WHERE CODCLASE='$id'";
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
+    
 
     function get_clase_marca_by_codmarca($cod_marca)
     {
@@ -149,9 +168,6 @@ class AssetController
         }
     }  
 
-
-    
-
     //Funcion para habilitar un departamento
     public function enableAsset($cod_act)
     {
@@ -176,3 +192,15 @@ class AssetController
         }
     }
 }
+
+/**<?php foreach ($clases as $clase): 
+                    if($clase['CODCLASE']===$classes){
+                        echo '<option selected value=' . $clase['CODCLASE'] . '>' . $clase["CLASE"] . '</option>';
+                    }else{
+                        echo '<option value=' . $clase['CODCLASE'] . '>'. $clase["CLASE"] . '</option>';
+                    }    
+                  endforeach; ?>
+                  ---------
+                  
+                  
+*/

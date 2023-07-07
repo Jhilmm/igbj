@@ -23,12 +23,12 @@ $(document).ready(function () {
   function carga_activo(send_dato) {
     $.ajax({
       type: "POST",
-      url: "/igbj/obtener_activo",
+      url: "/igbj/obtener_clase",
       data: send_dato,
       success: function (response) {
         const activos = JSON.parse(response);
         let templete =
-          '<option class="form-control" selected  disabled>Seleccione el activo</option>';
+          '<option class="form-control" selected  disabled>Seleccione la clase</option>';
         console.log(activos);
         activos.forEach((activos) => {
           templete += `<option value="${activos.cod_activo}">${activos.cod_activo} - ${activos.descripcion}</option>`;

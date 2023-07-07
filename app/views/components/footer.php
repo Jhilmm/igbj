@@ -88,9 +88,6 @@
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/assign_assets/view.js"></script>
 <?php } ?>
 
-<?php if (strpos(REQUEST_URI, '/registrar_activo') !== false) { ?>
-     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/peticion.js"></script>
-<?php } ?>
 
 </body>
 
