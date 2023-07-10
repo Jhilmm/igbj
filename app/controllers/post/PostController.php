@@ -25,9 +25,9 @@ class PostController
     public function update()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $name_depa = $_POST['name_depa'];
+            $codigo = $_POST['cod_cargo'];
             $cargo = $_POST['cargo'];
-            $departamentos = $this->register_post($name_depa,$cargo,1);
+            $departamentos = $this->update_post($codigo,$cargo);
             
             header("Location: /igbj/cargo");
             exit();
@@ -96,16 +96,30 @@ class PostController
     public function register_post($name_depa, $cargo, $est_cargo)
     {
         $conn = get_connection();
-    $stmt = $conn->prepare("CALL DB_SP_Cargo_add(?,?,?)");
-    $stmt->bind_param("isi",$name_depa, $cargo, $est_cargo );
-    if ($stmt->execute()) {
-        $stmt->close();
-        return true;
-    } else {
-        $stmt->close();
-        return false;
+        $stmt = $conn->prepare("CALL DB_SP_Cargo_add(?,?,?)");
+        $stmt->bind_param("isi",$name_depa, $cargo, $est_cargo );
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
     }
-    }  
+    
+    public function update_post($codigo, $cargo)
+    {
+        $conn = get_connection();
+        $stmt = $conn->prepare("CALL DB_SP_Cargo_update(?,?)");
+        $stmt->bind_param("is",$codigo, $cargo );
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
+    } 
 
     //Funcion para habilitar un cargo
     public function enablePost($cargo)
