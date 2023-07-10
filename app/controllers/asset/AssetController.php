@@ -35,6 +35,47 @@ class AssetController
         }
     }
 
+    public function update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $codigo = $_POST['codigo'];
+            $proveedor = $_POST['proveedor'];
+            //$clase = $_POST['clase'];
+            //$marca = $_POST['marca'];
+            $modelo = $_POST['modelo'];
+            $descripción = $_POST['descripción'];
+            $procedencia = $_POST['procedencia'];
+            $cod_act = $_POST['cod_act'];
+            $serie = $_POST['serie'];
+            $fabricacion = $_POST['fabricacion'];
+            $fec_ing = $_POST['fec_ing'];
+            $fotografia = addslashes(file_get_contents($_FILES['fotografia']['tmp_name']));
+            $modificación = 'curdate()';
+            $usuario = $_POST['usuario'];
+            $estado = $_POST['estado'];
+
+            echo $codigo . '--'.$proveedor . '--'.$modelo . '--'. $descripción.'--'.$procedencia . '--'.$cod_act . '--'.$serie . '--'.$fabricacion . '--'.$fec_ing . '--'.$modificación . '--'.$usuario . '--'.$estado;
+            
+            //$activos = $this->register_asset($proveedor, $modelo, $descripción, true, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $usuario);
+            $activos = $this->update_asset($codigo, $proveedor, $modelo, $descripción, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $modificación, $usuario, $estado);
+            
+            header("Location: /igbj/activo");
+            exit();
+        }else{
+            $codigo = $_GET['codigo'];
+            //obtener lista de proveedores
+            $proveedores = $this->get_provider();
+            $procedencias = $this->get_origin();
+            //obtener lista de activos
+            $activos      = $this->get_asset_by_cod($codigo);
+            $activo = $activos->fetch_array(MYSQLI_BOTH);
+            //obtener marca por el modelo
+            $clasemarcas = $this->get_classmark_by_model($activo['CODMODELO']);
+            $clasemarca = $clasemarcas->fetch_array(MYSQLI_BOTH);
+            include('app/views/assets/asset_update.php');
+        }
+    }
+
     public function enable()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -102,6 +143,23 @@ class AssetController
         }
     }
 
+    function get_mark2(){
+        
+            $conn = get_connection();
+            $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view";
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'CODMARCA' => $row['CODMARCA'],
+                    'MARCA' => $row['MARCA']
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+        
+    }
+
     function get_model(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $codigo = $_POST['codigoMo'];
@@ -117,6 +175,36 @@ class AssetController
             }
             $jsonString = json_encode($json);
             echo $jsonString;
+        }
+    }
+
+    function get_model2(){
+        $conn = get_connection();
+        $query = $query = 'SELECT CODMODELO, MODELO FROM modelo';
+        $result = $conn->query($query);
+        $json = array();
+        while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+            $json[] = array(
+                'CODMODELO' => $row['CODMODELO'],
+                'MODELO' => $row['MODELO']
+            );
+        }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+    }
+
+    function get_classmark_by_model($codigo){
+        $conn = get_connection();
+        $query = "SELECT CODMARCA FROM modelo WHERE CODMODELO = $codigo";
+        $query = $conn->query($query);
+        $query = $query->fetch_array(MYSQLI_BOTH);
+        $codigo = $query['CODMARCA'];
+
+        $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view WHERE CODMARCA = $codigo";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
         }
     }
     
@@ -142,23 +230,10 @@ class AssetController
         }
     }
 
-    
-
-    function get_clase_marca_by_codmarca($cod_marca)
-    {
-        $conn = get_connection();
-        $query = "SELECT * FROM DB_VIEW_ClaseactivoMarca_view WHERE CODMARCA='$cod_marca'";
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
-
-    function get_modelo($id)
+    function get_asset_by_cod($id)
 {
     $conn = get_connection();
-    $query = $query = 'CALL DB_SP_MarcaModelo_search_id("'. $id .'")';
+    $query = $query = 'CALL DB_SP_Activo_Search_by_id("'. $id .'")';
     if ($result = $conn->query($query)) {
         return $result;
     } else {
@@ -183,17 +258,34 @@ class AssetController
     }*/
 
     function register_asset( $proveedor, $modelo, $descripción, $estado, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $usuario)
-{
-    $conn = get_connection();
-    $query = "INSERT INTO activo (NITPROVEEDOR, CODMODELO, DESCRIPCION, ESTADOACTIVO, CODPROCEDENCIA, CODACTIVOFIJO, SERIE, ANIOFABRICACION, FECHAINGRESO, FOTOGRAFIA, USUARIOREGISTRO) values 
+    {
+        $conn = get_connection();
+        $query = "INSERT INTO activo (NITPROVEEDOR, CODMODELO, DESCRIPCION, ESTADOACTIVO, CODPROCEDENCIA, CODACTIVOFIJO, SERIE, ANIOFABRICACION, FECHAINGRESO, FOTOGRAFIA, USUARIOREGISTRO) values 
                                    ('$proveedor ','$modelo ','$descripción','$estado','$procedencia','$cod_act','$serie','$fabricacion','$fec_ing','$fotografia','$usuario');
-";
-    if ($result = $conn->query($query)) {
-        return $result;
-    } else {
-        return null;
+        ";
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
     }
-}
+
+    //método para actualizar un activo existente
+
+    function update_asset($codigo, $proveedor, $modelo, $descripción, $procedencia, $cod_act, $serie, $fabricacion, $fec_ing, $fotografia, $modificación, $usuario, $estado)
+    {
+        $conn = get_connection();
+        $query = "UPDATE activo SET NITPROVEEDOR = '$proveedor', CODMODELO = '$modelo', DESCRIPCION='$descripción', CODPROCEDENCIA = '$procedencia',
+                                    CODACTIVOFIJO = '$cod_act', SERIE = '$serie', ANIOFABRICACION = '$fabricacion', FECHAINGRESO = '$fec_ing',
+                                    FOTOGRAFIA = '$fotografia', FECHAMODIFICACION = curdate(), USUARIOREGISTRO = '$usuario',
+                                    ESTADOACTIVO = '$estado' WHERE CODACTIVO=$codigo;";
+        
+        if ($result = $conn->query($query)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
 
     //Funcion para habilitar un departamento
     public function enableAsset($cod_act)
@@ -219,15 +311,3 @@ class AssetController
         }
     }
 }
-
-/**<?php foreach ($clases as $clase): 
-                    if($clase['CODCLASE']===$classes){
-                        echo '<option selected value=' . $clase['CODCLASE'] . '>' . $clase["CLASE"] . '</option>';
-                    }else{
-                        echo '<option value=' . $clase['CODCLASE'] . '>'. $clase["CLASE"] . '</option>';
-                    }    
-                  endforeach; ?>
-                  ---------
-                  
-                  
-*/
