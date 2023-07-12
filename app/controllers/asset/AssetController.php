@@ -5,7 +5,6 @@ class AssetController
 
     public function index()
     {        
-        $activos= $this->view();
         include('app/views/assets/asset_view.php');                         
     }
 
@@ -97,17 +96,55 @@ class AssetController
     }
 
     //funcion para obtener la tabla activo
+
     public function view() 
     {
+        
         $conn = get_connection();
         $query = "SELECT * FROM DB_VIEW_Activo_view";
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
-        }
+        $result = $conn->query($query);
+        $json = array();
+        while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'CLASE' => $row['CLASE'],
+                    'MARCA' => $row['MARCA'],
+                    'MODELO' => $row['MODELO'],
+                    'PROCEDENCIA' => $row['PROCEDENCIA'],
+                    'FOTOGRAFIA' => base64_encode($row['FOTOGRAFIA']),
+                    'ANIOFABRICACION' => $row['ANIOFABRICACION'],
+                    'ESTADOACTIVO' => $row['ESTADOACTIVO'],
+                    'CODACTIVO' => $row['CODACTIVO']
+                );
+            }
+        $jsonString = json_encode($json);
+        echo $jsonString;
     }
 
+    public function search() 
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $activo = $_POST['activo'];
+            $conn = get_connection();
+            $query = $query = 'CALL DB_SP_Activo_Search("'. $activo .'")';
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'CLASE' => $row['CLASE'],
+                    'MARCA' => $row['MARCA'],
+                    'MODELO' => $row['MODELO'],
+                    'PROCEDENCIA' => $row['PROCEDENCIA'],
+                    'FOTOGRAFIA' => base64_encode($row['FOTOGRAFIA']),
+                    'ANIOFABRICACION' => $row['ANIOFABRICACION'],
+                    'ESTADOACTIVO' => $row['ESTADOACTIVO'],
+                    'CODACTIVO' => $row['CODACTIVO']
+                    
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+        }
+    }
     
     function get_class()
     {

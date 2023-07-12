@@ -112,6 +112,11 @@ $routes_limbert = [
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'vista_activo' => [
+        'controller' => 'AssetController',
+        'action' => 'view',
+        'methods' => ['GET']
+    ],
     'modificar_activo' => [
         'controller' => 'AssetController',
         'action' => 'update',
@@ -156,6 +161,11 @@ $routes_limbert = [
         'controller' => 'AssetController',
         'action' => 'get_model2',
         'methods' => ['GET']
+    ],
+    'busqueda_activo' => [
+        'controller' => 'AssetController',
+        'action' => 'search',
+        'methods' => ['POST']
     ],
 
     'cargo' => [
