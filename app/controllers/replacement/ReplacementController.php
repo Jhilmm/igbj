@@ -3,18 +3,58 @@ class ReplacementController
 {
     public function index()
     {        
-        $repuestos= $this->view();
         include('app/views/replacements/replacement_view.php');                         
     }
 
     public function view() 
     {
+        
         $conn = get_connection();
         $query = "SELECT * FROM DB_VIEW_Repuestos_view";
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
+        $result = $conn->query($query);
+        $json = array();
+        while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'NOMREPUESTO' => $row['NOMREPUESTO'],
+                    'DETALLEREPUESTO' => $row['DETALLEREPUESTO'],
+                    'NOMTIPOREPUESTO' => $row['NOMTIPOREPUESTO'],
+                    'FECHA' => $row['FECHA'],
+                    'MARCA' => $row['MARCA'],
+                    'MODELO' => $row['MODELO'],
+                    'CANTIDAD' => $row['CANTIDAD'],
+                    'ESTADO' => $row['ESTADO'],
+                    'CODREPUESTO' => $row['CODREPUESTO']
+                    
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
+    }
+
+    public function search() 
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $repuesto = $_POST['repuesto'];
+            $conn = get_connection();
+            $query = $query = 'CALL DB_SP_Repuesto_search("'. $repuesto .'")';
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                    'NOMREPUESTO' => $row['NOMREPUESTO'],
+                    'DETALLEREPUESTO' => $row['DETALLEREPUESTO'],
+                    'NOMTIPOREPUESTO' => $row['NOMTIPOREPUESTO'],
+                    'FECHA' => $row['FECHA'],
+                    'MARCA' => $row['MARCA'],
+                    'MODELO' => $row['MODELO'],
+                    'CANTIDAD' => $row['CANTIDAD'],
+                    'ESTADO' => $row['ESTADO'],
+                    'CODREPUESTO' => $row['CODREPUESTO']
+                    
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
         }
     }
 

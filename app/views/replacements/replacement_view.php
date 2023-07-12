@@ -6,7 +6,8 @@
         REPUESTOS REGISTRADOS EN EL SISTEMA
     </h1>
     <div class="d-flex justify-content-between">
-        <input class="form-control-sm" type="search" name="last_name1" id="search-bar" placeholder="Marco...">
+        <input class="form-control-sm" type="search" name="last_name1" id="busqueda" placeholder="Marco...">
+
         <a class="btn-sm btn-dark" href='/igbj/registrar_repuesto' id="create-btn">Crear</a>
     </div>
 
@@ -24,42 +25,20 @@
                 <th id="birthdate">Acciones</th>
             </tr>
         </thead>
-        <tbody id="person-table-body">
-        <?php foreach ($repuestos as $cargo): ?>
-            <tr>
-                    <td><?= $cargo['NOMREPUESTO']; ?></td>
-                    <td><?= $cargo['DETALLEREPUESTO']; ?></td>
-                    <td><?= $cargo['NOMTIPOREPUESTO']; ?></td>
-                    <td><?= $cargo["FECHA"] ?></td>
-                    <td><?= $cargo["MARCA"]?></td>
-                    <td><?= $cargo["MODELO"]?></td>
-                    <td><?= $cargo["CANTIDAD"]?></td>
-                    <td>
-                        <?php if ($cargo['ESTADO'] == 1): ?>
-                            <span>HABILITADO</span>
-                        <?php else: ?>
-                            <span>DESHABILITADO</span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="acciones">
-                        <div class="icons modificar d-flex justify-content-center">
-                            <a href="/igbj/actualizar_repuesto?repuesto=<?= $cargo['CODREPUESTO']; ?>" class="fas fa-pen align-self-center"></a>
-                        </div>                                              
-                        <?php if ($cargo['ESTADO'] == 1): ?>
-                            <div class="icons deshabilitar d-flex justify-content-center">
-                                <a href="/igbj/deshabilitar_repuesto?codigo=<?= $cargo['CODREPUESTO']; ?>" class="fas fa-lock-open align-self-center"></a>
-                            </div>
-                        <?php else: ?>
-                            <div class="icons habilitar d-flex justify-content-center">
-                                <a href="/igbj/habilitar_repuesto?codigo=<?= $cargo['CODREPUESTO']; ?>" class="fas fa-lock align-self-center"></a>
-                            </div>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+        <tbody id="tabla">
+        </tbody>
+        
+
+        <tbody id="tabla2">
+
         </tbody>
     </table>
-</div>
 
+    <div>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/igbj/app/scripts/replacement/replacement_search.js"></script>
 
 <?php include('app/views/components/footer.php'); ?>

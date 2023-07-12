@@ -216,6 +216,11 @@ $routes_limbert = [
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'vista_repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'view',
+        'methods' => ['GET']
+    ],
     'registrar_repuesto' => [
         'controller' => 'ReplacementController',
         'action' => 'register',
@@ -235,6 +240,11 @@ $routes_limbert = [
         'controller' => 'ReplacementController',
         'action' => 'disable',
         'methods' => ['GET']
+    ],
+    'busqueda_repuesto' => [
+        'controller' => 'ReplacementController',
+        'action' => 'search',
+        'methods' => ['POST']
     ],
 
     
