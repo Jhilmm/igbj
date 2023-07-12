@@ -4,7 +4,6 @@ class PostController
 {
     public function index()
     {        
-        $cargos= $this->view();
         include('app/views/posts/post_view.php');                         
     }
 
@@ -64,10 +63,40 @@ class PostController
     {
         $conn = get_connection();
         $query = "SELECT * FROM DB_VIEW_CargoAlll_view";
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
+        $result = $conn->query($query);
+        $json = array();
+        while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+            $json[] = array(
+            'CODCARGO' => $row['CODCARGO'],
+            'CODDEPARTAMENTO' => $row['CODDEPARTAMENTO'],
+            'CARGO' => $row['CARGO'],
+            'ESTADO' => $row['ESTADO']
+                                
+            );
+        }
+        $jsonString = json_encode($json);
+        echo $jsonString;
+    }
+
+    public function search() 
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $repuesto = $_POST['cargo'];
+            $conn = get_connection();
+            $query = $query = 'CALL DB_SP_Cargo_search("'. $repuesto .'")';
+            $result = $conn->query($query);
+            $json = array();
+            while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+                $json[] = array(
+                'CODCARGO' => $row['CODCARGO'],
+                'CODDEPARTAMENTO' => $row['CODDEPARTAMENTO'],
+                'CARGO' => $row['CARGO'],
+                'ESTADO' => $row['ESTADO']
+                    
+                );
+            }
+            $jsonString = json_encode($json);
+            echo $jsonString;
         }
     }
 

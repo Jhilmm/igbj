@@ -173,6 +173,11 @@ $routes_limbert = [
         'action' => 'index',
         'methods' => ['GET']
     ],
+    'vista_cargo' => [
+        'controller' => 'PostController',
+        'action' => 'view',
+        'methods' => ['GET']
+    ],
     'registrar_cargo' => [
         'controller' => 'PostController',
         'action' => 'register',
@@ -192,6 +197,11 @@ $routes_limbert = [
         'controller' => 'PostController',
         'action' => 'disable',
         'methods' => ['GET']
+    ],
+    'busqueda_cargo' => [
+        'controller' => 'PostController',
+        'action' => 'search',
+        'methods' => ['POST']
     ],
 
     'catalogo' => [
