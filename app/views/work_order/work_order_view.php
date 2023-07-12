@@ -10,13 +10,13 @@
 
         <!--Buscador-->
         <div class="d-flex justify-content-between">
-            <form action="/igbj/orden_trabajo" class="form" method="POST">
+            <form action="/igbj/orden_trabajo_search" class="form" method="POST">
                 <input class="form-control-lg" type="search" name="name_depa" id="search" placeholder="DEPARTAMENTO">
                 <button class="btn btn-primary btnb">
                     BUSCAR
                 </button>
             </form>
-            <a class="btn btn-secondary" href="/igbj/registrar_orden_trabajo">Crear</a>
+            <a class="btn btn-secondary" href="/igbj/registrar_orden_trabajo_formulario">Crear</a>
         </div>
 
         <!--Tabla de datos-->

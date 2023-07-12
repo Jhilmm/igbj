@@ -92,6 +92,13 @@
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/peticion.js"></script>
 <?php } ?>
 
+<?php if (strpos(REQUEST_URI, '/departamento') !== false) { ?>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/departament/view.js"></script>
+<?php } ?>
+
+<?php if (strpos(REQUEST_URI, '/proveedor') !== false) { ?>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/provider/view.js"></script>
+<?php } ?>
 </body>
 
 </html>

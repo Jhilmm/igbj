@@ -136,4 +136,51 @@ $routes_post = [
         'action' => 'searchAssignedAssets',
         'methods' => ['POST']
     ],
+
+    #Darwin
+    'departamento_search' => [
+        'controller' => 'DepartamentController',
+        'action' => 'search',
+        'methods' => ['POST']
+    ],
+    'registrar_departamento' => [
+        'controller' => 'DepartamentController',
+        'action' => 'registerDepartament',
+        'methods' => ['POST']
+    ],
+    'actualizar_departamento' => [
+        'controller' => 'DepartamentController',
+        'action' => 'updateDepartament',
+        'methods' => ['POST']
+    ],
+    'proveedor_search' => [
+        'controller' => 'ProviderController',
+        'action' => 'search',
+        'methods' => ['POST']
+    ],
+    'registrar_proveedor' => [
+        'controller' => 'ProviderController',
+        'action' => 'registerProvider',
+        'methods' => ['POST']
+    ],
+    'actualizar_proveedor' => [
+        'controller' => 'ProviderController',
+        'action' => 'updateProvider',
+        'methods' => ['POST']
+    ],
+    'orden_trabajo_search' => [
+        'controller' => 'WorkOrderController',
+        'action' => 'index',
+        'methods' => ['POST']
+    ],
+    'registrar_orden_trabajo' => [
+        'controller' => 'WorkOrderController',
+        'action' => 'registerWorkOrder',
+        'methods' => ['POST']
+    ],
+    'obtener_activo' => [
+        'controller' => 'WorkOrderItemController',
+        'action' => 'getActivo',
+        'methods' => ['POST']
+    ]
 ];

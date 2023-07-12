@@ -6,7 +6,7 @@
     </h1>
 
     <!--Formulario de registro-->
-    <form action="#" method="POST">
+    <form action="registrar_orden_trabajo" method="POST">
 
         <div class="form-group">
             <?php

@@ -2,16 +2,31 @@
 class ProviderController
 {
     public function index()
-    {        
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $proveedor = $_POST['name_pro'];         
-            $proveedores = $this->search($proveedor);
-            include('app/views/provider/provider_view.php');  
-            exit();        
-        }else{
-            $proveedores = $this->view();
-            include('app/views/provider/provider_view.php');
-        }                         
+    {
+        include('app/views/provider/provider_view.php');
+    }
+    public function search()
+    {
+        $proveedor = $_POST['send_dato'];
+
+        $conn = get_connection();
+        $query = 'CALL DB_SP_Proveedor_search("' . $proveedor . '")';
+        $result = $conn->query($query);
+        $json = array();
+        while ($row = $result->fetch_array(MYSQLI_BOTH)) {
+            $json[] = array(
+                'NIT' => $row['NIT'],
+                'NOMPROVEEDOR' => $row['NOMPROVEEDOR'],
+                'DIRECCION' => $row['DIRECCION'],
+                'TELEFONOPROVEEDOR' => $row['TELEFONOPROVEEDOR'],
+                'CONTACTO' => $row['CONTACTO'],
+                'CELULARCONTACTO' => $row['CELULARCONTACTO'],
+                'CORREOCONTACTO' => $row['CORREOCONTACTO'],
+                'ESTADO' => $row['ESTADO']
+            );
+        }
+        $jsonString = json_encode($json);
+        echo $jsonString;
     }
 
     public function registerProvider()
@@ -24,17 +39,17 @@ class ProviderController
             $contacto = $_POST['cont_pro'];
             $correo = $_POST['correo_pro'];
             $celular = $_POST['cel_pro'];
-            $proveedores = $this->register($nit,$nombre,$direccion,$telefono,$contacto,$correo,$celular,1);
+            $proveedores = $this->register($nit, $nombre, $direccion, $telefono, $contacto, $correo, $celular, 1);
             header("Location: /igbj/proveedor");
             exit();
-        }else{
+        } else {
             include('app/views/provider/provider_register.php');
-        }        
+        }
     }
 
     public function updateProvider()
     {
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nit = $_POST['nit'];
             $nombre = $_POST['name_pro'];
             $direccion = $_POST['dir_pro'];
@@ -42,10 +57,10 @@ class ProviderController
             $contacto = $_POST['cont_pro'];
             $correo = $_POST['correo_pro'];
             $celular = $_POST['cel_pro'];
-            $proveedores = $this->update($nit,$nombre,$direccion,$telefono,$contacto,$correo,$celular);
+            $proveedores = $this->update($nit, $nombre, $direccion, $telefono, $contacto, $correo, $celular);
             header("Location: /igbj/proveedor");
             exit();
-        }else{
+        } else {
             $proveedor = $_GET['proveedor'];
             $proveedores = $this->viewUpdate($proveedor);
             include('app/views/provider/provider_update.php');
@@ -55,7 +70,7 @@ class ProviderController
     public function enableProvider()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $proveedor = $_GET['proveedor'];            
+            $proveedor = $_GET['proveedor'];
             $proveedores = $this->enable($proveedor);
             header("Location: /igbj/proveedor");
             exit();
@@ -65,43 +80,19 @@ class ProviderController
     public function disableProvider()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $proveedor = $_GET['proveedor'];            
+            $proveedor = $_GET['proveedor'];
             $proveedores = $this->disable($proveedor);
             header("Location: /igbj/proveedor");
             exit();
         }
     }
 
-    //Funcion para obtener todos los registros de proveedor para mostrar
-    public function view()
-    {
-        $conn = get_connection();
-        $query = 'SELECT * FROM DB_VIEW_Provedor_view';
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
-
-    //Funcion para obtener el registro buscado
-    public function search($proveedor)
-    {
-        $conn = get_connection();
-        $query = 'CALL DB_SP_Proveedor_search("' . $proveedor . '")';
-        if ($result = $conn->query($query)) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
-
     //Funcion para guardar los registros de proveedor en la base de datos
-    public function register($nit,$name,$dir,$tel,$cont,$coreo,$cel,$estado)
+    public function register($nit, $name, $dir, $tel, $cont, $coreo, $cel, $estado)
     {
         $conn = get_connection();
         $stmt = $conn->prepare("CALL DB_SP_Proveedor_add(?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("ississii",$nit,$name,$dir,$tel,$cont,$coreo,$cel,$estado);
+        $stmt->bind_param("ississii", $nit, $name, $dir, $tel, $cont, $coreo, $cel, $estado);
         if ($stmt->execute()) {
             $stmt->close();
             return true;
@@ -124,11 +115,11 @@ class ProviderController
     }
 
     //Funcion para actualizar los datos de un proveedor especifico
-    public function update($nit,$name,$dir,$tel,$cont,$coreo,$cel)
+    public function update($nit, $name, $dir, $tel, $cont, $coreo, $cel)
     {
         $conn = get_connection();
         $stmt = $conn->prepare("CALL DB_SP_Proveedor_update(?,?,?,?,?,?,?)");
-        $stmt->bind_param("ississi",$nit,$name,$dir,$tel,$cont,$coreo,$cel);
+        $stmt->bind_param("ississi", $nit, $name, $dir, $tel, $cont, $coreo, $cel);
         if ($stmt->execute()) {
             $stmt->close();
             return true;
