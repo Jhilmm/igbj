@@ -16,6 +16,7 @@
                 <th id="last-name">Codigo Cargo</th>
                 <th id="middle-name">Departamento</th>
                 <th id="first-name">Cargo</th>
+                <th id="first-name">Cargo</th>
                 <th id="id-number">Estado</th>
                 <th id="birthdate">Acciones</th>
             </tr>
@@ -24,6 +25,16 @@
         
         </tbody>
     </table>
+</div>
+
+<div class="container-fluid  col-12">
+        <ul class="pagination pg-dark justify-content-center pb-5 pt-5 mb-0" style="float: none;" >
+            <li class="page-item">
+            <a class='page-link' aria-label='Previous' href='activo_view.php?nume="1"'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a>
+            <li class='page-item '><a class='page-link' href='activo_view.php?nume="2"' >1</a></li>
+            <a class='page-link' aria-label='Next' href='activo_view.php?nume=2'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a>
+            
+        </ul>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="/igbj/app/scripts/post/post_search.js"></script>

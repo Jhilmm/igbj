@@ -10,6 +10,7 @@ $(document).ready(function () {
           const repuesto = JSON.parse(response);
           let templete = ``;
           console.log(repuesto);
+          let contador = 0;
           repuesto.forEach((repuesto) => {
             templete += `<tr>`;
 
@@ -44,10 +45,15 @@ $(document).ready(function () {
 
             templete += `</td>`;
             //FIN ACCIONES
-
-
             templete += `</tr>`;
+
+            contador=contador+1;
           });
+          templete += `<tr>`;
+          templete += `<td>${contador}</td>`;
+          templete += `</tr>`;
+          
+
           $tabla.innerHTML = templete;
         },
       });
@@ -63,6 +69,7 @@ $(document).ready(function () {
             const repuesto = JSON.parse(response);
             let templete = ``;
             console.log(repuesto);
+            contador=0;
             repuesto.forEach((repuesto) => {
                 templete += `<tr>`;
 
@@ -97,10 +104,11 @@ $(document).ready(function () {
 
                 templete += `</td>`;
             //FIN ACCIONES
-
-
                 templete += `</tr>`;
+
+                contador=contador+1;
             });
+            
                 $tabla.innerHTML = templete;
           },
         });
