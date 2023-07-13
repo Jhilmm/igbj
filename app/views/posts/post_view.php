@@ -27,7 +27,7 @@
     </table>
 </div>
 
-<div class="container-fluid  col-12">
+<div class="container-fluid  col-12" id = "paginador">
         <ul class="pagination pg-dark justify-content-center pb-5 pt-5 mb-0" style="float: none;" >
             <li class="page-item">
             <a class='page-link' aria-label='Previous' href='activo_view.php?nume="1"'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a>

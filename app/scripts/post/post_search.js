@@ -1,6 +1,7 @@
 $(document).ready(function () {
     let $busqueda = document.querySelector("#busqueda");
     let $tabla = document.querySelector("#tabla");
+    let $paginador = document.querySelector("#paginador");
 
     function vista() {
       $.ajax({
@@ -49,12 +50,19 @@ $(document).ready(function () {
 
             contador=contador+1;
           });
-          templete += `<tr>`;
-          templete += `<td>${contador}</td>`;
-          templete += `</tr>`;
+
+          
           
 
           $tabla.innerHTML = templete;
+
+          templete =  `<ul class="pagination pg-dark justify-content-center pb-5 pt-5 mb-0" style="float: none;" >`;
+          templete +=  `<li class="page-item">`;
+          templete +=  `<a class='page-link' aria-label='Previous' href='activo_view.php?nume="1"'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a>`;
+          templete +=  `<li class='page-item '><a class='page-link' href='activo_view.php?nume="2"' >${contador}</a></li>`;
+          templete +=  `<a class='page-link' aria-label='Next' href='activo_view.php?nume=2'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a>`;
+          templete +=  `</ul>`;
+          $paginador.innerHTML = templete;
         },
       });
     }
@@ -108,8 +116,15 @@ $(document).ready(function () {
 
                 contador=contador+1;
             });
-            
-                $tabla.innerHTML = templete;
+            $tabla.innerHTML = templete;
+
+            templete =  `<ul class="pagination pg-dark justify-content-center pb-5 pt-5 mb-0" style="float: none;" >`;
+            templete +=  `<li class="page-item">`;
+            templete +=  `<a class='page-link' aria-label='Previous' href='activo_view.php?nume="1"'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a>`;
+            templete +=  `<li class='page-item '><a class='page-link' href='activo_view.php?nume="2"' >${contador}</a></li>`;
+            templete +=  `<a class='page-link' aria-label='Next' href='activo_view.php?nume=2'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a>`;
+            templete +=  `</ul>`;
+            $paginador.innerHTML = templete;
           },
         });
     }
