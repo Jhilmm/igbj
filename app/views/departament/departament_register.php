@@ -7,13 +7,13 @@
     <form action="registrar_departamento" method="POST">
         <div class="form-group">
             <label for="name_depa">Nombre de departamento:</label>
-            <input class="form-control" type="text" name="name_depa" id="name_depa" maxlength="50" pattern="^[a-zA-Z\d\s]+$" 
-            onkeyup="this.value=this.value.replace(/^\s+/,'');" autocomplete="off" required>  
+            <input class="form-control" type="text" name="name_depa" id="name_depa" autocomplete="off" required>
+            <div id="input_nombre" class="validation"></div>  
         </div>
         <div class="form-group">
             <label for="des_depa">Descripción departamento:</label>
-            <input class="form-control" type="text" name="des_depa" id="des_depa" maxlength="300"
-            onkeyup="this.value=this.value.replace(/^\s+/,'');" autocomplete="off">
+            <input class="form-control" type="text" name="des_depa" id="des_depa" maxlength="300" autocomplete="off">
+            <div id="input_descripcion" class="validation"></div>  
         </div>
         
         <div class="row justify-content-center">

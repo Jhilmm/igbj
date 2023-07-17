@@ -92,6 +92,10 @@ td {
 .deshabilitar {
   background-color: #ffc107;
 }
+
+.validation{
+  color: red;
+}
 /*FIN ORDEN VIEW*/
 .btnf {
   width: 110px;
