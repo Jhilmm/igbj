@@ -1,4 +1,4 @@
-$(document).ready(function () {
+ $(document).ready(function () {
   let buscar = document.getElementById("text");
   let table = document.getElementById("table-body");
 

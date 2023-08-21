@@ -93,12 +93,28 @@ td {
   background-color: #ffc107;
 }
 
-.validation{
+.validation {
   color: red;
+}
+#schedule {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly !important;
+}
+.schedule {
+  display: flex;
+  flex-direction: row;
+}
+.view {
+  width: 15vw;
 }
 /*FIN ORDEN VIEW*/
 .btnf {
   width: 110px;
+}
+.celda_form {
+  display: flex;
+  justify-content: space-around;
 }
 label,
 input,

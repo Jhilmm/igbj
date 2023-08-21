@@ -75,6 +75,9 @@
             <li>
                 <a class="dropdown-item" href="/igbj/orden_trabajo">Ordenes de trabajo</a>
             </li>
+            <li>
+                <a class="dropdown-item" href="/igbj/cronograma_mantenimiento">Cronograma de mantenimientos</a>
+            </li>
         </ul>
     </nav>
 

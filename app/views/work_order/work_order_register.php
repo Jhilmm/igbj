@@ -22,7 +22,6 @@
             <div class="form-group work">
                 <label for="resp_activo">Responsable activo:</label>
                 <select name="resp_activo" id="resp_activo" class="form-control" required></select>
-
             </div>
 
             <div class="form-group work">

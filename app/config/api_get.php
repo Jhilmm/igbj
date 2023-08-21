@@ -146,4 +146,24 @@ $routes_get = [
         'action' => 'getResponsible',
         'methods' => ['GET']
     ],
+    'cronograma_mantenimiento' => [
+        'controller' => 'MaintenanceScheduleController',
+        'action' => 'index',
+        'methods' => ['GET']
+    ],
+    'cargar_departamentos' => [
+        'controller' => 'MaintenanceScheduleController',
+        'action' => 'viewDepartament',
+        'methods' => ['GET']
+    ],
+    'cargar_activos' => [
+        'controller' => 'MaintenanceScheduleController',
+        'action' => 'viewAsset',
+        'methods' => ['GET']
+    ],
+    'borrar_cronograma' => [
+        'controller' => 'MaintenanceScheduleController',
+        'action' => 'deleteSchedule',
+        'methods' => ['GET']
+    ]
 ];

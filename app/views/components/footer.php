@@ -102,6 +102,9 @@
 <?php if (strpos(REQUEST_URI, '/registrar_departamento_formulario') !== false) { ?>
      <script src="<?php DOCUMENT_ROOT; ?>app/scripts/departament/validacion_registro.js"></script>
 <?php } ?>
+<?php if (strpos(REQUEST_URI, '/cronograma_mantenimiento') !== false) { ?>
+     <script src="<?php DOCUMENT_ROOT; ?>app/scripts/maintenance_schedule/view.js"></script>
+<?php } ?>
 </body>
 
 </html>

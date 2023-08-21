@@ -182,5 +182,15 @@ $routes_post = [
         'controller' => 'WorkOrderItemController',
         'action' => 'getActivo',
         'methods' => ['POST']
+    ],
+    'cronogramas_preventivos' => [
+        'controller' => 'MaintenanceScheduleController',
+        'action' => 'view',
+        'methods' => ['POST']
+    ],
+    'guardar_cronograma' => [
+        'controller' => 'MaintenanceScheduleController',
+        'action' => 'registerSchedule',
+        'methods' => ['POST']
     ]
 ];

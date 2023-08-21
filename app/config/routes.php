@@ -11,6 +11,7 @@ require_once DOCUMENT_ROOT . 'app/controllers/department/DepartamentController.p
 require_once DOCUMENT_ROOT . 'app/controllers/provider/ProviderController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/work_order/WorkOrderController.php';
 require_once DOCUMENT_ROOT . 'app/controllers/work_order/WorkOrderItemController.php';
+require_once DOCUMENT_ROOT . 'app/controllers/maintenance_schedule/MaintenanceScheduleController.php';
 
 require_once 'api_get.php';
 require_once 'api_post.php';
